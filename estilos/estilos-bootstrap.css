@@ -1,0 +1,318 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Open Sans", sans-serif;
+  line-height: 1.6;
+}
+
+.fuente-encabezado {
+  font-family: "Montserrat", sans-serif;
+  font-weight: 700;
+}
+
+.fondo-principal {
+  background-color: #F4F6F9;
+}
+
+.texto-principal {
+  color: #212529;
+}
+
+.texto-secundario {
+  color: #495057;
+}
+
+.texto-claro {
+  color: #E9ECEF;
+}
+
+/* HEADER */
+.header-nutrifit {
+  background: #1F3C88;
+  color: #FFFFFF;
+  border-radius: 0 0 1rem 1rem;
+}
+
+.logo-nutrifit {
+  max-height: 15rem;
+  width: auto;
+}
+
+.titulo-principal {
+  font-size: 3rem;
+  line-height: 1.1;
+  color: #FFFFFF;
+}
+
+.iconos-header a {
+  color: #FFFFFF;
+  font-size: 1.5rem;
+  text-decoration: none;
+}
+
+.iconos-header a:hover {
+  color: #FF932B;
+}
+
+/* NAV */
+.nav-nutrifit {
+  background: #385299;
+  width: min(80%, 1200px);
+}
+
+.nav-nutrifit .nav-link {
+  color: #FFFFFF;
+  border-radius: 1rem;
+  padding: 0.75rem 1rem;
+}
+
+.nav-nutrifit .nav-link:hover,
+.nav-nutrifit .nav-link:focus,
+.nav-nutrifit .nav-link.active {
+  color: #FFC28A;
+}
+
+.navbar .dropdown-toggle::after {
+  display: none;
+}
+
+.nav-nutrifit .dropdown-menu {
+  background: #071C54;
+  border: none;
+  border-radius: 0.75rem;
+}
+
+
+.nav-nutrifit .dropdown-item {
+  color: #FFFFFF;
+}
+
+.nav-nutrifit .dropdown-item:hover,
+.nav-nutrifit .dropdown-item:focus {
+  background: transparent;
+  color: #FF932B;
+}
+
+.buscador-bootstrap input {
+  border: none;
+  
+}
+.buscador-bootstrap label {
+  background-color: #F76807;
+}
+
+.btn-naranja {
+  background-color: #F76807;
+  color: #FFFFFF;
+  border: none;
+}
+
+.btn-naranja:hover {
+  background-color: #FF932B;
+  color: #FFFFFF;
+}
+
+.btn-outline-primary-custom {
+  display: inline-block;
+  font-weight: 600;
+  color: 0264F7;
+  border: 2px solid #0D6EFD;
+  border-radius: 0.5rem;
+  padding: 0.5rem 0.9rem;
+  text-decoration: none;
+  transition: all 0.25s ease;
+}
+
+.btn-outline-primary-custom:hover {
+  color: #FFFFFF;
+  background-color: #FD7E14;
+  border-color: #FD7E14;
+}
+
+/* SECCIONES */
+.seccion-destacada {
+  background: #1F3C88;
+}
+
+.imagen-trabajando {
+  max-width: 400px;
+}
+
+/* CARDS */
+.tarjeta-plan {
+  border-radius: 0.75rem;
+  overflow: hidden;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  background: #FFFFFF;
+}
+
+.tarjeta-plan:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 0.5rem 1.25rem rgba(0, 0, 0, 0.15) !important;
+}
+
+.tarjeta-plan .card-title {
+  color: #1F3C88;
+}
+
+.imagen-card {
+  height: 12rem;
+  object-fit: cover;
+}
+
+.lista-plan li {
+  color: #495057;
+  margin-bottom: 0.5rem;
+}
+
+.lista-plan li:last-child {
+  margin-bottom: 0;
+}
+
+.alerta-nota {
+  background-color: #E9ECEF;
+  color: #212529;
+  border: 1px solid #ced4da;
+  border-radius: 1rem;
+}
+
+.form-control:focus,
+.form-select:focus,
+textarea.form-control:focus {
+  border-color: #1F3C88;
+  box-shadow: 0 0 0 0.2rem rgba(31, 60, 136, 0.15);
+}
+
+.form-label {
+  font-weight: 600;
+  color: #212529;
+}
+
+.enlace-login {
+  color: #1F3C88;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.enlace-login:hover {
+  color: #F76807;
+}
+
+.imagen-receta-bootstrap {
+  object-fit: cover;
+  height: 100%;
+}
+
+.lista-receta li {
+  color: #495057;
+  margin-bottom: 0.5rem;
+}
+
+.list-group-item {
+  border-color: #e9ecef;
+  color: #495057;
+  background-color: transparent;
+}
+
+.carousel-item img {
+  height: 420px;
+  object-fit: cover;
+}
+
+.carousel-caption {
+  left: 2rem;
+  right: 2rem;
+  bottom: 3.5rem;
+}
+
+.carousel-indicators {
+  margin-bottom: 1rem;
+  z-index: 3;
+}
+
+.carousel-indicators button {
+  width: 2.2rem;
+  height: 0.35rem;
+  border-radius: 999px;
+}
+
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+  filter: drop-shadow(0 0 0.35rem rgba(0, 0, 0, 0.7));
+}
+
+.accordion-button {
+  font-weight: 700;
+  color: #1F3C88;
+}
+
+.accordion-button:not(.collapsed) {
+  background-color: #E9ECEF;
+  color: #1F3C88;
+  box-shadow: none;
+}
+
+.accordion-button:focus {
+  box-shadow: 0 0 0 0.2rem rgba(31, 60, 136, 0.15);
+  border-color: transparent;
+}
+
+
+/* FOOTER */
+.footer-nutrifit {
+  background-color: #071C54;
+  border-radius: 1rem 1rem 0 0;
+}
+
+.footer-nutrifit a {
+  color: #FF932B;
+  text-decoration: none;
+}
+
+.footer-nutrifit a:hover {
+  color: #FFFFFF;
+}
+
+
+@media (max-width: 992px) {
+
+  .titulo-principal {
+    font-size: 2.4rem;
+  }
+
+  .logo-nutrifit {
+    max-height: 8rem;
+  }
+
+  .nav-nutrifit {
+    width: 100%;
+  }
+
+  .nav-nutrifit .nav-link {
+    text-align: center;
+  }
+
+  .buscador-bootstrap {
+    width: 100%;
+    margin-top: 1rem;
+  }
+
+}
+
+@media (max-width: 768px) {
+
+  .titulo-principal {
+    font-size: 2rem;
+  }
+
+  .logo-nutrifit {
+    max-height: 7rem;
+  }
+
+  .carousel-item img {
+    height: 280px;
+  }
+
+}

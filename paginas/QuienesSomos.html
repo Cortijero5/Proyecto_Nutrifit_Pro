@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Quiénes somos | NutriFit Pro</title>
+
+  <!-- Favicon -->
+  <link rel="icon" href="../Imagenes/favicon.ico">
+
+  <!-- Bootstrap -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700&family=Open+Sans:wght@400;600&display=swap"
+    rel="stylesheet">
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="../estilos/estilos-bootstrap.css">
+</head>
+
+<body class="d-flex flex-column min-vh-100 fondo-principal texto-principal">
+
+  <!-- HEADER -->
+  <header class="header-nutrifit py-3 px-3 px-md-4">
+    <div class="container-fluid">
+      <div class="row align-items-center text-center text-lg-start">
+
+        <div class="col-12 col-lg-3 mb-3 mb-lg-0 text-center text-lg-start">
+          <a href="../index.html">
+            <img src="../Imagenes/LogoLetrasBG.svg" alt="Logo de NutriFit Pro" class="img-fluid logo-nutrifit">
+          </a>
+        </div>
+
+        <div class="col-12 col-lg-6 mb-3 mb-lg-0 text-center">
+          <h1 class="fuente-encabezado mb-0 titulo-principal">NutriFit Pro</h1>
+        </div>
+
+        <div class="col-12 col-lg-3">
+          <div class="d-flex justify-content-center justify-content-lg-end align-items-center gap-3 iconos-header">
+            <a href="login.html" aria-label="Iniciar sesión">
+              <i class="fa fa-user"></i>
+            </a>
+            <a href="Favoritos.html" aria-label="Mis guardados">
+              <i class="fa fa-heart"></i>
+            </a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </header>
+
+  <!-- NAV -->
+  <nav class="navbar navbar-expand-lg navbar-dark nav-nutrifit rounded-3 shadow-sm mx-auto mt-4 mb-4"
+    aria-label="Navegación principal">
+    <div class="container-fluid px-3">
+
+      <button class="navbar-toggler ms-auto" type="button" data-bs-toggle="collapse" data-bs-target="#menuPrincipal"
+        aria-controls="menuPrincipal" aria-expanded="false" aria-label="Mostrar navegación">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="menuPrincipal">
+        <ul class="navbar-nav me-auto mb-3 mb-lg-0">
+
+          <li class="nav-item">
+            <a class="nav-link" href="../index.html">Inicio</a>
+          </li>
+
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">Planes</a>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item" href="PlanPerdidaGrasa.html">Pérdida de grasa</a></li>
+              <li><a class="dropdown-item" href="PlanGananciaMuscular.html">Ganancia muscular</a></li>
+              <li><a class="dropdown-item" href="PlanMantenimiento.html">Mantenimiento</a></li>
+              <li><a class="dropdown-item" href="PlanPersonalizado.html">Personalizado</a></li>
+            </ul>
+          </li>
+
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">Recetas</a>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item" href="RecetasAltaProteina.html">Alta proteína</a></li>
+              <li><a class="dropdown-item" href="RecetasBajaCalorias.html">Baja en calorías</a></li>
+              <li><a class="dropdown-item" href="RecetasVeganas.html">Veganas</a></li>
+              <li><a class="dropdown-item" href="RecetasSinGluten.html">Sin gluten</a></li>
+            </ul>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link" href="Calculadora.html">Calculadora</a>
+          </li>
+
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">Artículos</a>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item" href="articulos/ArticulosSuplementacion.html">Suplementación deportiva</a>
+              </li>
+              <li><a class="dropdown-item" href="articulos/ArticulosRecuperacion.html">Recuperación muscular</a></li>
+            </ul>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link" href="Suscripcion.html">Premium</a>
+          </li>
+        </ul>
+
+        <form class="d-flex buscador-bootstrap" role="search" action="#" method="get">
+          <label for="q" class="visually-hidden">Buscar</label>
+          <input id="q" name="q" class="form-control rounded-start" type="search"
+            placeholder="Buscar recetas, dietas...">
+          <button class="btn btn-naranja rounded-end" type="submit" aria-label="Buscar">
+            <i class="fa fa-search"></i>
+          </button>
+        </form>
+      </div>
+    </div>
+  </nav>
+
+  <!-- MAIN -->
+  <main class="flex-grow-1">
+    <div class="container py-4">
+
+      <section class="mb-5 text-center">
+        <h2 class="fuente-encabezado mb-3">Quiénes somos</h2>
+        <p class="texto-secundario mb-0">
+          NutriFit Pro es un proyecto de nutrición deportiva orientado al entorno fitness,
+          con recetas por objetivos, planes guiados y herramientas que se implementarán
+          progresivamente.
+        </p>
+      </section>
+      
+      <section class="mb-5">
+        <div class="accordion" id="accordionProyecto">
+
+          <div class="accordion-item border-0 shadow-sm rounded-4 overflow-hidden">
+            <h2 class="accordion-header" id="headingGaleria">
+              <button class="accordion-button fuente-encabezado" type="button" data-bs-toggle="collapse"
+                data-bs-target="#collapseGaleria" aria-expanded="true" aria-controls="collapseGaleria">
+                Galería del proyecto
+              </button>
+            </h2>
+
+            <div id="collapseGaleria" class="accordion-collapse collapse show" aria-labelledby="headingGaleria"
+              data-bs-parent="#accordionProyecto">
+              <div class="accordion-body p-4">
+
+                <div class="row g-4">
+
+                  <div class="col-12 col-sm-6 col-lg-4">
+                    <figure class="card tarjeta-plan h-100 border-0 shadow-sm mb-0">
+                      <img src="../Imagenes/LogoLetrasBG.svg" alt="Logo de NutriFit Pro"
+                        class="card-img-top p-4 imagen-card object-fit-contain">
+                      <figcaption class="card-body">
+                        <p class="card-text texto-secundario mb-0">Logo principal de NutriFit Pro</p>
+                      </figcaption>
+                    </figure>
+                  </div>
+
+                  <div class="col-12 col-sm-6 col-lg-4">
+                    <figure class="card tarjeta-plan h-100 border-0 shadow-sm mb-0">
+                      <img src="../Imagenes/work.jpg" alt="Sección en desarrollo" class="card-img-top imagen-card">
+                      <figcaption class="card-body">
+                        <p class="card-text texto-secundario mb-0">Imagen de sección en desarrollo</p>
+                      </figcaption>
+                    </figure>
+                  </div>
+
+                  <div class="col-12 col-sm-6 col-lg-4">
+                    <figure class="card tarjeta-plan h-100 border-0 shadow-sm mb-0">
+                      <img src="../Imagenes/plan-definicion.png" alt="Plan pérdida de grasa"
+                        class="card-img-top imagen-card">
+                      <figcaption class="card-body">
+                        <p class="card-text texto-secundario mb-0">Plan: Pérdida de grasa</p>
+                      </figcaption>
+                    </figure>
+                  </div>
+
+                  <div class="col-12 col-sm-6 col-lg-4">
+                    <figure class="card tarjeta-plan h-100 border-0 shadow-sm mb-0">
+                      <img src="../Imagenes/plan-volumen.jpg" alt="Plan ganancia muscular"
+                        class="card-img-top imagen-card">
+                      <figcaption class="card-body">
+                        <p class="card-text texto-secundario mb-0">Plan: Ganancia muscular</p>
+                      </figcaption>
+                    </figure>
+                  </div>
+
+                  <div class="col-12 col-sm-6 col-lg-4">
+                    <figure class="card tarjeta-plan h-100 border-0 shadow-sm mb-0">
+                      <img src="../Imagenes/plan-mantenimiento.jpg" alt="Plan mantenimiento"
+                        class="card-img-top imagen-card">
+                      <figcaption class="card-body">
+                        <p class="card-text texto-secundario mb-0">Plan: Mantenimiento</p>
+                      </figcaption>
+                    </figure>
+                  </div>
+
+                  <div class="col-12 col-sm-6 col-lg-4">
+                    <figure class="card tarjeta-plan h-100 border-0 shadow-sm mb-0">
+                      <img src="../Imagenes/pollo-arroz.jpg" alt="Pollo con arroz fit" class="card-img-top imagen-card">
+                      <figcaption class="card-body">
+                        <p class="card-text texto-secundario mb-0">Pollo con arroz fit – receta alta en proteína</p>
+                      </figcaption>
+                    </figure>
+                  </div>
+
+                  <div class="col-12 col-sm-6 col-lg-4">
+                    <figure class="card tarjeta-plan h-100 border-0 shadow-sm mb-0">
+                      <img src="../Imagenes/tortilla-claras.jpg" alt="Tortilla de claras"
+                        class="card-img-top imagen-card">
+                      <figcaption class="card-body">
+                        <p class="card-text texto-secundario mb-0">Tortilla de claras – receta proteica rápida</p>
+                      </figcaption>
+                    </figure>
+                  </div>
+
+                  <div class="col-12 col-sm-6 col-lg-4">
+                    <figure class="card tarjeta-plan h-100 border-0 shadow-sm mb-0">
+                      <img src="../Imagenes/yogur-proteico.jpg" alt="Yogur proteico" class="card-img-top imagen-card">
+                      <figcaption class="card-body">
+                        <p class="card-text texto-secundario mb-0">Yogur proteico – snack saludable alto en proteína</p>
+                      </figcaption>
+                    </figure>
+                  </div>
+
+                  <div class="col-12 col-sm-6 col-lg-4">
+                    <figure class="card tarjeta-plan h-100 border-0 shadow-sm mb-0">
+                      <img src="../Imagenes/ensalada-pollo.jpg" alt="Ensalada con pollo"
+                        class="card-img-top imagen-card">
+                      <figcaption class="card-body">
+                        <p class="card-text texto-secundario mb-0">Ensalada ligera con pollo – receta baja en calorías
+                        </p>
+                      </figcaption>
+                    </figure>
+                  </div>
+
+                  <div class="col-12 col-sm-6 col-lg-4">
+                    <figure class="card tarjeta-plan h-100 border-0 shadow-sm mb-0">
+                      <img src="../Imagenes/crema-calabacin.jpg" alt="Crema de calabacín"
+                        class="card-img-top imagen-card">
+                      <figcaption class="card-body">
+                        <p class="card-text texto-secundario mb-0">Crema de calabacín – receta ligera y saciante</p>
+                      </figcaption>
+                    </figure>
+                  </div>
+
+                  <div class="col-12 col-sm-6 col-lg-4">
+                    <figure class="card tarjeta-plan h-100 border-0 shadow-sm mb-0">
+                      <img src="../Imagenes/pescado-horno.jpg" alt="Pescado al horno" class="card-img-top imagen-card">
+                      <figcaption class="card-body">
+                        <p class="card-text texto-secundario mb-0">Pescado al horno con verduras – receta baja en
+                          calorías</p>
+                      </figcaption>
+                    </figure>
+                  </div>
+
+                  <div class="col-12 col-sm-6 col-lg-4">
+                    <figure class="card tarjeta-plan h-100 border-0 shadow-sm mb-0">
+                      <img src="../Imagenes/bowl-quinoa-tofu.jpg" alt="Bowl de quinoa y tofu"
+                        class="card-img-top imagen-card">
+                      <figcaption class="card-body">
+                        <p class="card-text texto-secundario mb-0">Bowl de quinoa y tofu – receta vegana</p>
+                      </figcaption>
+                    </figure>
+                  </div>
+
+                  <div class="col-12 col-sm-6 col-lg-4">
+                    <figure class="card tarjeta-plan h-100 border-0 shadow-sm mb-0">
+                      <img src="../Imagenes/pasta-lenteja-pesto.jpg" alt="Pasta de lenteja con pesto"
+                        class="card-img-top imagen-card">
+                      <figcaption class="card-body">
+                        <p class="card-text texto-secundario mb-0">Pasta de lenteja con pesto – receta vegana rica en
+                          proteína vegetal</p>
+                      </figcaption>
+                    </figure>
+                  </div>
+
+                  <div class="col-12 col-sm-6 col-lg-4">
+                    <figure class="card tarjeta-plan h-100 border-0 shadow-sm mb-0">
+                      <img src="../Imagenes/garbanzos-salteados.jpg" alt="Garbanzos salteados"
+                        class="card-img-top imagen-card">
+                      <figcaption class="card-body">
+                        <p class="card-text texto-secundario mb-0">Garbanzos salteados – receta vegana rápida</p>
+                      </figcaption>
+                    </figure>
+                  </div>
+
+                  <div class="col-12 col-sm-6 col-lg-4">
+                    <figure class="card tarjeta-plan h-100 border-0 shadow-sm mb-0">
+                      <img src="../Imagenes/pollo-patata.jpg" alt="Pollo con patata asada"
+                        class="card-img-top imagen-card">
+                      <figcaption class="card-body">
+                        <p class="card-text texto-secundario mb-0">Pollo con patata asada – receta sin gluten</p>
+                      </figcaption>
+                    </figure>
+                  </div>
+
+                  <div class="col-12 col-sm-6 col-lg-4">
+                    <figure class="card tarjeta-plan h-100 border-0 shadow-sm mb-0">
+                      <img src="../Imagenes/tortilla-patata.jpg" alt="Tortilla de patata"
+                        class="card-img-top imagen-card">
+                      <figcaption class="card-body">
+                        <p class="card-text texto-secundario mb-0">Tortilla de patata – receta tradicional sin gluten
+                        </p>
+                      </figcaption>
+                    </figure>
+                  </div>
+
+                  <div class="col-12 col-sm-6 col-lg-4">
+                    <figure class="card tarjeta-plan h-100 border-0 shadow-sm mb-0">
+                      <img src="../Imagenes/yogur-fruta-nueces.jpg" alt="Yogur con fruta y nueces"
+                        class="card-img-top imagen-card">
+                      <figcaption class="card-body">
+                        <p class="card-text texto-secundario mb-0">Yogur con fruta y nueces – snack sin gluten</p>
+                      </figcaption>
+                    </figure>
+                  </div>
+
+                </div>
+
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      <section class="mb-5">
+        <div class="card border-0 shadow-sm rounded-4">
+          <div class="card-body p-4 p-md-5">
+            <h2 class="fuente-encabezado mb-3">Audio explicativo</h2>
+            <audio controls class="w-100">
+              <source src="../media/nutrifit-descripcion.mp3" type="audio/mpeg">
+              Tu navegador no soporta audio HTML5.
+            </audio>
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <div class="card border-0 shadow-sm rounded-4">
+          <div class="card-body p-4 p-md-5">
+            <h2 class="fuente-encabezado mb-3">Vídeo presentación</h2>
+
+            <div class="ratio ratio-16x9 rounded-4 overflow-hidden">
+              <iframe src="https://www.youtube.com/embed/QqSA3CpWPcw" title="Presentación NutriFit Pro"
+                allowfullscreen></iframe>
+            </div>
+          </div>
+        </div>
+      </section>
+
+    </div>
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="footer-nutrifit text-white py-3 mt-auto">
+    <div class="container text-center">
+      <p class="mb-2">Autoría: Francisco Ortega Baños</p>
+      <ul class="list-unstyled d-flex justify-content-center gap-4 mb-0 flex-wrap">
+        <li><a href="Contacto.html">Contacto</a></li>
+        <li><a href="AvisoLegal.html">Aviso Legal</a></li>
+      </ul>
+    </div>
+  </footer>
+
+  <!-- JS Bootstrap -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>
