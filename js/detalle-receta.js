@@ -1,22 +1,22 @@
 // Cuando el documento esté cargado, ejecutamos la función principal
-document.addEventListener("DOMContentLoaded", function () {
+document.addEventListener('DOMContentLoaded', function () {
     cargarDetalleReceta();
 });
 
 // Función principal para cargar el detalle de una receta
 function cargarDetalleReceta() {
-    const contenedor = document.getElementById("detalle-receta");
+    const contenedor = document.getElementById('detalle-receta');
 
     if (!contenedor) {
         return;
     }
 
     // URLSearchParams permite leer los parámetros de la URL
-    // Ejemplo: prueba_ajax_detalle_receta.html?id=1
+    // Ejemplo: DetalleReceta.html?id=1
     const parametros = new URLSearchParams(window.location.search);
 
     // Obtenemos el valor del parámetro id
-    const id = parametros.get("id");
+    const id = parametros.get('id');
 
     // Si no hay id, mostramos error
     if (!id) {
@@ -29,7 +29,7 @@ function cargarDetalleReceta() {
     }
 
     // Construimos la URL del endpoint detalle
-    const url = API.recetas.detalle + "?id=" + encodeURIComponent(id);
+    const url = API.recetas.detalle + '?id=' + encodeURIComponent(id);
 
     fetch(url)
         .then(function (respuesta) {
@@ -39,7 +39,7 @@ function cargarDetalleReceta() {
             pintarDetalleReceta(receta);
         })
         .catch(function (error) {
-            console.error("Error al cargar el detalle de la receta:", error);
+            console.error('Error al cargar el detalle de la receta:', error);
 
             contenedor.innerHTML = `
                 <div class="alert alert-danger">
@@ -51,7 +51,7 @@ function cargarDetalleReceta() {
 
 // Función que pinta el detalle de la receta en pantalla
 function pintarDetalleReceta(receta) {
-    const contenedor = document.getElementById("detalle-receta");
+    const contenedor = document.getElementById('detalle-receta');
 
     if (!contenedor) {
         return;
@@ -59,13 +59,17 @@ function pintarDetalleReceta(receta) {
 
     // Si la API devuelve error, lo mostramos
     if (receta.error) {
-        contenedor.innerHTML = `<div class="alert alert-warning">
+        contenedor.innerHTML = `
+            <div class="alert alert-warning">
                 ${receta.mensaje}
-            </div>`;
+            </div>
+        `;
         return;
     }
 
-    let listaIngredientes = "";
+    document.title = receta.nombre + ' | NutriFit Pro';
+
+    let listaIngredientes = '';
 
     receta.ingredientes.forEach(function (ingrediente) {
         listaIngredientes += `
@@ -77,12 +81,13 @@ function pintarDetalleReceta(receta) {
 
     contenedor.innerHTML = `
         <section class="mb-5 text-center">
-            <h1 class="fuente-encabezado mb-3">${receta.nombre}</h1>
+            <h2 class="fuente-encabezado mb-3">${receta.nombre}</h2>
             <p class="texto-secundario mb-0">${receta.descripcion}</p>
         </section>
 
         <section class="row justify-content-center">
             <div class="col-12 col-xl-10">
+
                 <div class="card border-0 shadow-sm rounded-4 overflow-hidden">
                     <div class="row g-0">
 
@@ -95,7 +100,7 @@ function pintarDetalleReceta(receta) {
                         <div class="col-12 col-lg-7">
                             <div class="card-body p-4 p-md-5">
 
-                                <h2 class="fuente-encabezado h4 mb-3">Datos rápidos</h2>
+                                <h3 class="fuente-encabezado h4 mb-3">Datos rápidos</h3>
 
                                 <ul class="list-group list-group-flush mb-4">
                                     <li class="list-group-item px-0">
@@ -106,13 +111,20 @@ function pintarDetalleReceta(receta) {
                                     </li>
                                 </ul>
 
-                                <h2 class="fuente-encabezado h4 mb-3">Ingredientes</h2>
+                                <h3 class="fuente-encabezado h4 mb-3">Ingredientes</h3>
 
                                 <ul class="mb-4 lista-receta">
                                     ${listaIngredientes}
                                 </ul>
 
-                                <a href="${BASE_URL}prueba_ajax_recetas.html" class="btn btn-naranja">
+                                <div class="alert alerta-nota mb-4" role="note">
+                                    <h3 class="fuente-encabezado h5 mb-2">Nota</h3>
+                                    <p class="mb-0">
+                                        Las cantidades son orientativas y pueden adaptarse según tus necesidades.
+                                    </p>
+                                </div>
+
+                                <a href="${BASE_URL}paginas/Recetas.html" class="btn btn-naranja">
                                     Volver a recetas
                                 </a>
 
@@ -121,6 +133,7 @@ function pintarDetalleReceta(receta) {
 
                     </div>
                 </div>
+
             </div>
         </section>
     `;

@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Calculadora | NutriFit Pro</title>
+    <title>Recetas | NutriFit Pro</title>
 
     <!-- Favicon -->
     <link rel="icon" href="../Imagenes/favicon.ico">
@@ -93,8 +93,8 @@
                     </li>
 
                     <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="dropdownRecetas" role="button"
-                            data-bs-toggle="dropdown" aria-expanded="false">
+                        <a class="nav-link dropdown-toggle active" href="#" id="dropdownRecetas" role="button"
+                            data-bs-toggle="dropdown" aria-expanded="false" aria-current="page">
                             Recetas
                         </a>
                         <ul class="dropdown-menu" aria-labelledby="dropdownRecetas">
@@ -109,7 +109,7 @@
                     </li>
 
                     <li class="nav-item">
-                        <a class="nav-link active" href="Calculadora.html" aria-current="page">Calculadora</a>
+                        <a class="nav-link" href="Calculadora.html">Calculadora</a>
                     </li>
 
                     <li class="nav-item dropdown">
@@ -147,77 +147,17 @@
         <div class="container py-4">
 
             <section class="mb-5">
-                <h2 class="fuente-encabezado mb-3">Calculadora de calorías</h2>
-                <p class="texto-secundario mb-0">
-                    Selecciona ingredientes, introduce la cantidad en gramos y calcula el total aproximado de calorías,
-                    proteínas, hidratos y grasas.
+                <h2 id="titulo-recetas" class="fuente-encabezado mb-3">Recetas</h2>
+                <p id="descripcion-recetas" class="texto-secundario mb-0">
+                    Explora las recetas disponibles en NutriFit Pro.
                 </p>
             </section>
 
-            <div id="mensaje-calculadora" class="mb-3"></div>
+            <section class="mb-4">
+                <h2 class="fuente-encabezado mb-4">Listado</h2>
 
-            <section class="card border-0 shadow-sm rounded-4 mb-4">
-                <div class="card-body p-4">
-
-                    <form id="form-calculadora" class="row g-3">
-
-                        <div class="col-12 col-md-6">
-                            <label for="ingrediente" class="form-label">Ingrediente</label>
-                            <select id="ingrediente" class="form-select" required>
-                                <option value="">Cargando ingredientes...</option>
-                            </select>
-                        </div>
-
-                        <div class="col-12 col-md-4">
-                            <label for="cantidad" class="form-label">Cantidad en gramos</label>
-                            <input type="number" id="cantidad" class="form-control" min="1" step="1"
-                                placeholder="Ej: 200" required>
-                        </div>
-
-                        <div class="col-12 col-md-2 d-flex align-items-end">
-                            <button type="submit" class="btn btn-naranja w-100">
-                                Añadir
-                            </button>
-                        </div>
-
-                    </form>
-
-                </div>
-            </section>
-
-            <section class="row g-4">
-                <div class="col-12 col-lg-7">
-                    <h2 class="h4 fuente-encabezado mb-3">Ingredientes añadidos</h2>
-
-                    <div id="lista-ingredientes">
-                        <div class="alert alert-info">
-                            Todavía no has añadido ingredientes.
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-12 col-lg-5">
-                    <div id="totales-calculadora">
-                        <div class="card border-0 shadow-sm rounded-4">
-                            <div class="card-body p-4">
-                                <h2 class="h4 fuente-encabezado mb-3">Totales</h2>
-
-                                <p><strong>Calorías:</strong> 0 kcal</p>
-                                <p><strong>Proteínas:</strong> 0 g</p>
-                                <p><strong>Hidratos:</strong> 0 g</p>
-                                <p class="mb-0"><strong>Grasas:</strong> 0 g</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <section class="mt-4">
-                <div class="alert alerta-nota mb-0" role="note">
-                    <h2 class="fuente-encabezado h5 mb-2">Nota</h2>
-                    <p class="mb-0">
-                        Los valores son aproximados y dependen de los datos nutricionales guardados en la base de datos.
-                    </p>
+                <div id="contenedor-recetas" class="row g-4">
+                    <!-- JavaScript cargará aquí las tarjetas -->
                 </div>
             </section>
 
@@ -240,7 +180,7 @@
 
     <!-- JS propio -->
     <script src="../js/config.js"></script>
-    <script src="../js/calculadora.js"></script>
+    <script src="../js/recetas.js"></script>
 </body>
 
 </html>

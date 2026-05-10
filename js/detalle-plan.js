@@ -12,7 +12,7 @@ function cargarDetallePlan() {
     }
 
     // Leemos el id que viene en la URL
-    // Ejemplo: prueba_ajax_detalle_plan.html?id=1
+    // Ejemplo: DetallePlan.html?id=1
     const parametros = new URLSearchParams(window.location.search);
     const id = parametros.get('id');
 
@@ -62,6 +62,8 @@ function pintarDetallePlan(plan) {
         return;
     }
 
+    document.title = plan.nombre + ' | NutriFit Pro';
+
     let textoPremium = 'Gratuito';
 
     if (parseInt(plan.es_premium) === 1) {
@@ -72,16 +74,17 @@ function pintarDetallePlan(plan) {
 
     plan.recetas.forEach(function (receta) {
         listaRecetas += `
-            <li class="list-group-item">
-                <div class="d-flex flex-column flex-md-row justify-content-between gap-2">
+            <li class="list-group-item px-0">
+                <div class="d-flex flex-column flex-md-row justify-content-between align-items-md-center gap-3">
                     <div>
                         <strong>${receta.dia} - ${receta.comida}</strong><br>
-                        ${receta.nombre}
+                        <span>${receta.nombre}</span>
                         <span class="text-muted">(${receta.tipo})</span>
                     </div>
 
                     <div>
-                        <a href="${BASE_URL}prueba_ajax_detalle_receta.html?id=${receta.id_receta}" class="btn btn-sm btn-naranja">
+                        <a href="${BASE_URL}paginas/DetalleReceta.html?id=${receta.id_receta}" 
+                           class="btn btn-sm btn-naranja">
                             Ver receta
                         </a>
                     </div>
@@ -92,17 +95,17 @@ function pintarDetallePlan(plan) {
 
     contenedor.innerHTML = `
         <section class="mb-5">
-            <h1 class="fuente-encabezado mb-3">${plan.nombre}</h1>
+            <h2 class="fuente-encabezado mb-3">${plan.nombre}</h2>
             <p class="texto-secundario mb-0">${plan.descripcion}</p>
         </section>
 
         <section class="mb-4">
             <div class="card border-0 shadow-sm rounded-4">
                 <div class="card-body p-4">
-                    <h2 class="fuente-encabezado h4 mb-3">Datos del plan</h2>
-
-                    <p><strong>Objetivo:</strong> ${plan.objetivo}</p>
-                    <p class="mb-0"><strong>Tipo:</strong> ${textoPremium}</p>
+                    <h3 class="fuente-encabezado h4 mb-3">Objetivo</h3>
+                    <p class="mb-0 texto-secundario">
+                        ${plan.objetivo}
+                    </p>
                 </div>
             </div>
         </section>
@@ -110,7 +113,18 @@ function pintarDetallePlan(plan) {
         <section class="mb-4">
             <div class="card border-0 shadow-sm rounded-4">
                 <div class="card-body p-4">
-                    <h2 class="fuente-encabezado h4 mb-3">Recetas del plan</h2>
+                    <h3 class="fuente-encabezado h4 mb-3">Tipo de plan</h3>
+                    <p class="mb-0 texto-secundario">
+                        ${textoPremium}
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <section class="mb-4">
+            <div class="card border-0 shadow-sm rounded-4">
+                <div class="card-body p-4">
+                    <h3 class="fuente-encabezado h4 mb-3">Recetas del plan</h3>
 
                     <ul class="list-group list-group-flush">
                         ${listaRecetas}
@@ -119,7 +133,16 @@ function pintarDetallePlan(plan) {
             </div>
         </section>
 
-        <a href="${BASE_URL}prueba_ajax_planes.html" class="btn btn-naranja">
+        <section class="mb-4">
+            <div class="alert alerta-nota mb-0" role="note">
+                <h3 class="fuente-encabezado h5 mb-2">Nota</h3>
+                <p class="mb-0">
+                    Este plan es orientativo y no sustituye el asesoramiento de un profesional de la nutrición.
+                </p>
+            </div>
+        </section>
+
+        <a href="${BASE_URL}paginas/Planes.html" class="btn btn-naranja">
             Volver a planes
         </a>
     `;

@@ -1,18 +1,19 @@
 // Cuando el documento HTML esté cargado, ejecutamos la función principal
 document.addEventListener('DOMContentLoaded', function () {
 
-    // Buscamos si la página tiene definido un tipo de receta concreto
     const contenedor = document.getElementById('contenedor-recetas');
 
-    // Si no existe el contenedor, no hacemos nada
     if (!contenedor) {
         return;
     }
 
-    // Leemos el tipo desde el atributo data-tipo del contenedor
-    const tipo = contenedor.dataset.tipo;
+    // Leemos los parámetros de la URL.
+    // Ejemplo: Recetas.html?tipo=Vegana
+    const parametros = new URLSearchParams(window.location.search);
+    const tipo = parametros.get('tipo');
 
-    // Si hay tipo, cargamos recetas filtradas
+    actualizarCabeceraRecetas(tipo);
+
     if (tipo) {
         cargarRecetasPorTipo(tipo);
     } else {
@@ -50,6 +51,39 @@ function cargarRecetasPorTipo(tipo) {
         });
 }
 
+// Función que cambia el título y descripción según el tipo
+function actualizarCabeceraRecetas(tipo) {
+    const titulo = document.getElementById('titulo-recetas');
+    const descripcion = document.getElementById('descripcion-recetas');
+
+    if (!titulo || !descripcion) {
+        return;
+    }
+
+    if (!tipo) {
+        titulo.textContent = 'Todas las recetas';
+        descripcion.textContent = 'Explora todas las recetas disponibles en NutriFit Pro.';
+        return;
+    }
+
+    if (tipo === 'Alta proteína') {
+        titulo.textContent = 'Recetas altas en proteína';
+        descripcion.textContent = 'Recetas orientadas a rendimiento y ganancia muscular: fáciles, rápidas y con ingredientes comunes.';
+    } else if (tipo === 'Baja en calorías') {
+        titulo.textContent = 'Recetas bajas en calorías';
+        descripcion.textContent = 'Opciones ligeras, saciantes y pensadas para controlar calorías sin complicarte.';
+    } else if (tipo === 'Vegana') {
+        titulo.textContent = 'Recetas veganas';
+        descripcion.textContent = 'Recetas 100% vegetales, equilibradas y fáciles: pensadas para el día a día y adaptables a tus macros.';
+    } else if (tipo === 'Sin gluten') {
+        titulo.textContent = 'Recetas sin gluten';
+        descripcion.textContent = 'Recetas aptas para evitar gluten, con alimentos sencillos y preparaciones prácticas.';
+    } else {
+        titulo.textContent = 'Recetas';
+        descripcion.textContent = 'Explora las recetas disponibles en NutriFit Pro.';
+    }
+}
+
 // Función que recibe el array de recetas y crea las tarjetas HTML
 function pintarRecetas(recetas) {
     const contenedor = document.getElementById('contenedor-recetas');
@@ -60,7 +94,6 @@ function pintarRecetas(recetas) {
 
     contenedor.innerHTML = '';
 
-    // Si la API devuelve un error, lo mostramos en pantalla
     if (recetas.error) {
         contenedor.innerHTML = `
             <div class="col-12">
@@ -77,22 +110,22 @@ function pintarRecetas(recetas) {
         columna.className = 'col-12 col-md-6 col-lg-4';
 
         columna.innerHTML = `
-            <article class="card h-100 border-0 shadow-sm rounded-4 overflow-hidden">
-                <img src="${BASE_URL}Imagenes/${receta.imagen}" 
-                     class="card-img-top" 
-                     alt="${receta.nombre}">
+            <article class="card h-100 tarjeta-plan border-0 shadow-sm">
+                <a href="${BASE_URL}paginas/DetalleReceta.html?id=${receta.id_receta}" 
+                   class="text-decoration-none text-reset h-100"
+                   aria-label="Ver receta: ${receta.nombre}">
 
-                <div class="card-body">
-                    <h2 class="h5 fuente-encabezado">${receta.nombre}</h2>
-                    <p class="texto-secundario">${receta.descripcion}</p>
+                    <img src="${BASE_URL}Imagenes/${receta.imagen}" 
+                         class="card-img-top imagen-card" 
+                         alt="${receta.nombre}">
 
-                    <p class="mb-1"><strong>Tipo:</strong> ${receta.tipo}</p>
-                    <p class="mb-3"><strong>Nivel:</strong> ${receta.nivel}</p>
-
-                    <a href="${BASE_URL}prueba_ajax_detalle_receta.html?id=${receta.id_receta}" class="btn btn-naranja">
-                    Ver receta
-                    </a>
-                </div>
+                    <div class="card-body">
+                        <h3 class="card-title fuente-encabezado h4">${receta.nombre}</h3>
+                        <p class="card-text texto-secundario">
+                            ${receta.nivel} · ${receta.tipo}
+                        </p>
+                    </div>
+                </a>
             </article>
         `;
 

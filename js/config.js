@@ -18,5 +18,9 @@ const API = {
         login: BASE_URL + 'api/usuarios/login.php',
         sesion: BASE_URL + 'api/usuarios/sesion.php',
         logout: BASE_URL + 'api/usuarios/logout.php'
+    },
+
+    ingredientes: {
+        listar: BASE_URL + 'api/ingredientes/listar.php'
     }
 };

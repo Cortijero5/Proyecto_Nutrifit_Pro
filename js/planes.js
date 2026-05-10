@@ -49,11 +49,11 @@ function pintarPlanes(planes) {
         }
 
         columna.innerHTML = `
-            <article class="card h-100 border-0 shadow-sm rounded-4">
+            <article class="card h-100 tarjeta-plan border-0 shadow-sm">
                 <div class="card-body p-4">
-                    <h2 class="h5 fuente-encabezado">${plan.nombre}</h2>
+                    <h3 class="card-title fuente-encabezado h4">${plan.nombre}</h3>
 
-                    <p class="texto-secundario">
+                    <p class="card-text texto-secundario">
                         ${plan.descripcion}
                     </p>
 
@@ -65,7 +65,7 @@ function pintarPlanes(planes) {
                         <strong>Tipo:</strong> ${textoPremium}
                     </p>
 
-                    <a href="${BASE_URL}prueba_ajax_detalle_plan.html?id=${plan.id_plan}" class="btn btn-naranja">
+                    <a href="${BASE_URL}paginas/DetallePlan.html?id=${plan.id_plan}" class="btn btn-naranja">
                         Ver plan
                     </a>
                 </div>
