@@ -56,8 +56,18 @@ function gestionarRespuestaLogin(resultado) {
         false,
     );
 
-    // Más adelante aquí podremos redirigir al perfil o al inicio
-    // window.location.href = BASE_URL + 'index.html';
+    setTimeout(function () {
+
+        // Si el usuario es admin, lo mandamos directamente al panel de administración
+        if (resultado.usuario.rol === 'admin') {
+            window.location.href = BASE_URL + 'paginas/admin/PanelAdmin.html';
+            return;
+        }
+
+        // Si es usuario normal o premium, lo mandamos a la página de suscripción
+        window.location.href = BASE_URL + 'paginas/Suscripcion.html';
+
+    }, 800);
 }
 
 function mostrarMensajeLogin(mensaje, esError) {
@@ -75,7 +85,7 @@ function mostrarMensajeLogin(mensaje, esError) {
 
     contenedorMensaje.innerHTML = `
         <div class="alert ${claseAlerta}" role="alert">
-            ${mensaje}
+            ${escaparHTML(mensaje)}
         </div>
     `;
 }

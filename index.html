@@ -5,7 +5,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>NutriFit Pro Bootstrap</title>
+  <title>NutriFit Pro</title>
 
   <!-- Favicon -->
   <link rel="icon" href="Imagenes/favicon.ico">
@@ -29,112 +29,11 @@
 
 <body class="d-flex flex-column min-vh-100 fondo-principal texto-principal">
 
-  <!-- HEADER -->
-  <header class="header-nutrifit py-3 px-3 px-md-4">
-    <div class="container-fluid">
-      <div class="row align-items-center text-center text-lg-start">
+  <!-- HEADER cargado por JavaScript -->
+  <div id="header"></div>
 
-        <div class="col-12 col-lg-3 mb-3 mb-lg-0 text-center text-lg-start">
-          <a href="index.html">
-            <img src="Imagenes/LogoLetrasBG.svg" alt="Logo de NutriFit Pro" class="img-fluid logo-nutrifit">
-          </a>
-        </div>
-
-        <div class="col-12 col-lg-6 mb-3 mb-lg-0 text-center">
-          <h1 class="fuente-encabezado mb-0 titulo-principal">NutriFit Pro</h1>
-        </div>
-
-        <div class="col-12 col-lg-3">
-          <div class="d-flex justify-content-center justify-content-lg-end align-items-center gap-3 iconos-header">
-            <a href="paginas/login.html" aria-label="Mi perfil">
-              <i class="fa fa-user"></i>
-            </a>
-            <a href="paginas/Favoritos.html" aria-label="Mis guardados">
-              <i class="fa fa-heart"></i>
-            </a>
-          </div>
-        </div>
-
-      </div>
-    </div>
-  </header>
-
-  <!-- NAV -->
-  <nav class="navbar navbar-expand-lg navbar-dark nav-nutrifit rounded-3 shadow-sm mx-auto mt-4 mb-4"
-    aria-label="Navegación principal">
-    <div class="container-fluid px-3">
-
-      <button class="navbar-toggler ms-auto" type="button" data-bs-toggle="collapse" data-bs-target="#menuPrincipal"
-        aria-controls="menuPrincipal" aria-expanded="false" aria-label="Mostrar navegación">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-
-      <div class="collapse navbar-collapse" id="menuPrincipal">
-        <ul class="navbar-nav me-auto mb-3 mb-lg-0 align-items-lg-center">
-
-          <li class="nav-item">
-            <a class="nav-link active" href="index.html" aria-current="page">Inicio</a>
-          </li>
-
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" id="dropdownPlanes" role="button" data-bs-toggle="dropdown"
-              aria-expanded="false">
-              Planes
-            </a>
-            <ul class="dropdown-menu" aria-labelledby="dropdownPlanes">
-              <li><a class="dropdown-item" href="paginas/PlanPerdidaGrasa.html">Pérdida de grasa</a></li>
-              <li><a class="dropdown-item" href="paginas/PlanGananciaMuscular.html">Ganancia muscular</a></li>
-              <li><a class="dropdown-item" href="paginas/PlanMantenimiento.html">Mantenimiento</a></li>
-              <li><a class="dropdown-item" href="paginas/PlanPersonalizado.html">Personalizado</a></li>
-            </ul>
-          </li>
-
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" id="dropdownRecetas" role="button" data-bs-toggle="dropdown"
-              aria-expanded="false">
-              Recetas
-            </a>
-            <ul class="dropdown-menu" aria-labelledby="dropdownRecetas">
-              <li><a class="dropdown-item" href="paginas/RecetasAltaProteina.html">Alta proteína</a></li>
-              <li><a class="dropdown-item" href="paginas/RecetasBajaCalorias.html">Baja en calorías</a></li>
-              <li><a class="dropdown-item" href="paginas/RecetasVeganas.html">Veganas</a></li>
-              <li><a class="dropdown-item" href="paginas/RecetasSinGluten.html">Sin gluten</a></li>
-            </ul>
-          </li>
-
-          <li class="nav-item">
-            <a class="nav-link" href="paginas/Calculadora.html">Calculadora</a>
-          </li>
-
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" id="dropdownArticulos" role="button" data-bs-toggle="dropdown"
-              aria-expanded="false">
-              Artículos
-            </a>
-            <ul class="dropdown-menu" aria-labelledby="dropdownArticulos">
-              <li><a class="dropdown-item" href="paginas/articulos/ArticulosSuplementacion.html">Suplementación
-                  deportiva</a></li>
-              <li><a class="dropdown-item" href="paginas/articulos/ArticulosRecuperacion.html">Recuperación muscular</a>
-              </li>
-            </ul>
-          </li>
-
-          <li class="nav-item">
-            <a class="nav-link" href="paginas/Suscripcion.html">Premium</a>
-          </li>
-        </ul>
-
-        <form class="d-flex buscador-bootstrap" role="search" action="#" method="get">
-          <label for="q" class="visually-hidden">Buscar</label>
-          <input id="q" name="q" class="form-control rounded-start" type="search"
-            placeholder="Buscar recetas, dietas...">
-          <button class="btn btn-naranja rounded-end" type="submit" aria-label="Buscar">
-            <i class="fa fa-search"></i>
-          </button>
-        </form>
-      </div>
-    </div>
-  </nav>
+  <!-- NAV cargado por JavaScript -->
+  <div id="nav"></div>
 
   <!-- MAIN -->
   <main class="flex-grow-1">
@@ -145,11 +44,11 @@
         <p class="texto-secundario mb-3">
           Bienvenido a NutriFit Pro, una plataforma enfocada en la nutrición deportiva y el entorno fitness.
           Accede a recetas saludables y planes nutricionales según tu objetivo, además de calcular calorías por
-          ingrediente. Guarda tus favoritos y desbloquea contenido premium mediante suscripción anual.
+          ingrediente.
         </p>
 
         <a href="paginas/QuienesSomos.html" class="btn btn-outline-primary-custom">
-          Quiénes somos (galería, audio y vídeo)
+          Quiénes somos
         </a>
       </section>
 
@@ -170,7 +69,7 @@
           <div class="carousel-inner rounded-4 overflow-hidden">
 
             <div class="carousel-item active">
-              <a href="paginas/recetasAltPro/PolloArrozFit.html" class="text-decoration-none">
+              <a href="paginas/DetalleReceta.html?id=1" class="text-decoration-none">
                 <div class="position-relative">
                   <img src="Imagenes/pollo-arroz.jpg" class="d-block w-100" alt="Pollo con arroz fit">
                   <div class="position-absolute top-0 start-0 m-3">
@@ -185,7 +84,7 @@
             </div>
 
             <div class="carousel-item">
-              <a href="paginas/recetasBajCal/EnsaladaPolloLigera.html" class="text-decoration-none">
+              <a href="paginas/DetalleReceta.html?id=4" class="text-decoration-none">
                 <div class="position-relative">
                   <img src="Imagenes/ensalada-pollo.jpg" class="d-block w-100" alt="Ensalada ligera con pollo">
                   <div class="position-absolute top-0 start-0 m-3">
@@ -200,7 +99,7 @@
             </div>
 
             <div class="carousel-item">
-              <a href="paginas/recetasVeg/BowlQuinoaTofu.html" class="text-decoration-none">
+              <a href="paginas/DetalleReceta.html?id=10" class="text-decoration-none">
                 <div class="position-relative">
                   <img src="Imagenes/bowl-quinoa-tofu.jpg" class="d-block w-100" alt="Bowl de quinoa y tofu">
                   <div class="position-absolute top-0 start-0 m-3">
@@ -215,7 +114,7 @@
             </div>
 
             <div class="carousel-item">
-              <a href="paginas/recetasSinGl/PolloPatataAsada.html" class="text-decoration-none">
+              <a href="paginas/DetalleReceta.html?id=7" class="text-decoration-none">
                 <div class="position-relative">
                   <img src="Imagenes/pollo-patata.jpg" class="d-block w-100" alt="Pollo con patata asada">
                   <div class="position-absolute top-0 start-0 m-3">
@@ -251,14 +150,15 @@
 
           <div class="col-12 col-md-6 col-lg-4">
             <article class="card h-100 tarjeta-plan border-0 shadow-sm">
-              <a href="paginas/PlanPerdidaGrasa.html" class="text-decoration-none text-reset h-100"
+              <a href="paginas/DetallePlan.html?id=2" class="text-decoration-none text-reset h-100"
                 aria-label="Ver plan de pérdida de grasa">
                 <img src="Imagenes/plan-definicion.png" class="card-img-top imagen-card" alt="Plan de pérdida de grasa"
                   loading="lazy">
                 <div class="card-body">
                   <h3 class="card-title fuente-encabezado h4">Pérdida de grasa</h3>
-                  <p class="card-text texto-secundario">Orientación nutricional para reducir grasa manteniendo masa
-                    muscular.</p>
+                  <p class="card-text texto-secundario">
+                    Orientación nutricional para reducir grasa manteniendo masa muscular.
+                  </p>
                 </div>
               </a>
             </article>
@@ -266,14 +166,15 @@
 
           <div class="col-12 col-md-6 col-lg-4">
             <article class="card h-100 tarjeta-plan border-0 shadow-sm">
-              <a href="paginas/PlanGananciaMuscular.html" class="text-decoration-none text-reset h-100"
+              <a href="paginas/DetallePlan.html?id=1" class="text-decoration-none text-reset h-100"
                 aria-label="Ver plan de ganancia muscular">
                 <img src="Imagenes/plan-volumen.jpg" class="card-img-top imagen-card" alt="Plan de ganancia muscular"
                   loading="lazy">
                 <div class="card-body">
                   <h3 class="card-title fuente-encabezado h4">Ganancia muscular</h3>
-                  <p class="card-text texto-secundario">Recetas y distribución de comidas orientadas a aumentar masa
-                    muscular.</p>
+                  <p class="card-text texto-secundario">
+                    Recetas y distribución de comidas orientadas a aumentar masa muscular.
+                  </p>
                 </div>
               </a>
             </article>
@@ -281,13 +182,14 @@
 
           <div class="col-12 col-md-6 col-lg-4">
             <article class="card h-100 tarjeta-plan border-0 shadow-sm">
-              <a href="paginas/PlanMantenimiento.html" class="text-decoration-none text-reset h-100"
+              <a href="paginas/DetallePlan.html?id=3" class="text-decoration-none text-reset h-100"
                 aria-label="Ver plan de mantenimiento">
                 <img src="Imagenes/plan-mantenimiento.jpg" class="card-img-top imagen-card"
                   alt="Plan de mantenimiento físico" loading="lazy">
                 <div class="card-body">
                   <h3 class="card-title fuente-encabezado h4">Mantenimiento</h3>
-                  <p class="card-text texto-secundario">Equilibrio entre nutrición, rendimiento y hábitos saludables.
+                  <p class="card-text texto-secundario">
+                    Equilibrio entre nutrición, rendimiento y hábitos saludables.
                   </p>
                 </div>
               </a>
@@ -300,19 +202,15 @@
     </div>
   </main>
 
-  <!-- FOOTER -->
-  <footer class="footer-nutrifit text-white py-3 mt-auto">
-    <div class="container text-center">
-      <p class="mb-2">Autoría: Francisco Ortega Baños</p>
-      <ul class="list-unstyled d-flex justify-content-center gap-4 mb-0 flex-wrap">
-        <li><a href="paginas/Contacto.html">Contacto</a></li>
-        <li><a href="paginas/AvisoLegal.html">Aviso Legal</a></li>
-      </ul>
-    </div>
-  </footer>
+  <!-- FOOTER cargado por JavaScript -->
+  <div id="footer"></div>
 
   <!-- JS Bootstrap -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+  <!-- JS propio -->
+  <script src="js/config.js"></script>
+  <script src="js/layout.js"></script>
 </body>
 
 </html>

@@ -1,0 +1,96 @@
+<nav class="navbar navbar-expand-lg navbar-dark nav-nutrifit rounded-3 shadow-sm mx-auto mt-4 mb-4"
+    aria-label="Navegación principal">
+    <div class="container-fluid px-3">
+
+        <button class="navbar-toggler ms-auto" type="button" data-bs-toggle="collapse" data-bs-target="#menuPrincipal"
+            aria-controls="menuPrincipal" aria-expanded="false" aria-label="Mostrar navegación">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="menuPrincipal">
+            <ul class="navbar-nav me-auto mb-3 mb-lg-0 align-items-lg-center">
+
+                <li class="nav-item">
+                    <a class="nav-link" href="/Nutrifit_Pro/index.html">Inicio</a>
+                </li>
+
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="dropdownPlanes" role="button"
+                        data-bs-toggle="dropdown" aria-expanded="false">
+                        Planes
+                    </a>
+
+                    <ul class="dropdown-menu" aria-labelledby="dropdownPlanes">
+                        <li><a class="dropdown-item" href="/Nutrifit_Pro/paginas/Planes.html">Todos los planes</a></li>
+                        <li><a class="dropdown-item" href="/Nutrifit_Pro/paginas/DetallePlan.html?id=2">Pérdida de
+                                grasa</a></li>
+                        <li><a class="dropdown-item" href="/Nutrifit_Pro/paginas/DetallePlan.html?id=1">Ganancia
+                                muscular</a></li>
+                        <li><a class="dropdown-item"
+                                href="/Nutrifit_Pro/paginas/DetallePlan.html?id=3">Mantenimiento</a></li>
+                    </ul>
+                </li>
+
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="dropdownRecetas" role="button"
+                        data-bs-toggle="dropdown" aria-expanded="false">
+                        Recetas
+                    </a>
+
+                    <ul class="dropdown-menu" aria-labelledby="dropdownRecetas">
+                        <li><a class="dropdown-item" href="/Nutrifit_Pro/paginas/Recetas.html">Todas las recetas</a>
+                        </li>
+                        <li><a class="dropdown-item"
+                                href="/Nutrifit_Pro/paginas/Recetas.html?tipo=Alta%20prote%C3%ADna">Alta proteína</a>
+                        </li>
+                        <li><a class="dropdown-item"
+                                href="/Nutrifit_Pro/paginas/Recetas.html?tipo=Baja%20en%20calor%C3%ADas">Baja en
+                                calorías</a></li>
+                        <li><a class="dropdown-item" href="/Nutrifit_Pro/paginas/Recetas.html?tipo=Vegana">Veganas</a>
+                        </li>
+                        <li><a class="dropdown-item" href="/Nutrifit_Pro/paginas/Recetas.html?tipo=Sin%20gluten">Sin
+                                gluten</a></li>
+                    </ul>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" href="/Nutrifit_Pro/paginas/Calculadora.html">Calculadora</a>
+                </li>
+
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="dropdownArticulos" role="button"
+                        data-bs-toggle="dropdown" aria-expanded="false">
+                        Artículos
+                    </a>
+
+                    <ul class="dropdown-menu" aria-labelledby="dropdownArticulos">
+                        <li><a class="dropdown-item"
+                                href="/Nutrifit_Pro/paginas/articulos/ArticulosSuplementacion.html">Suplementación
+                                deportiva</a></li>
+                        <li><a class="dropdown-item"
+                                href="/Nutrifit_Pro/paginas/articulos/ArticulosRecuperacion.html">Recuperación
+                                muscular</a></li>
+                    </ul>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" href="/Nutrifit_Pro/paginas/Suscripcion.html">Premium</a>
+                </li>
+
+                <li class="nav-item d-none" id="enlace-admin-nav">
+                    <a class="nav-link" href="/Nutrifit_Pro/paginas/admin/PanelAdmin.html">Admin</a>
+                </li>
+
+            </ul>
+
+            <form class="d-flex buscador-bootstrap" role="search" action="#" method="get">
+                <label for="q" class="visually-hidden">Buscar</label>
+                <input id="q" name="q" class="form-control rounded-start" type="search"
+                    placeholder="Buscar recetas, dietas...">
+                <button class="btn btn-naranja rounded-end" type="submit" aria-label="Buscar">
+                    <i class="fa fa-search"></i>
+                </button>
+            </form>
+        </div>
+    </div>
+</nav>

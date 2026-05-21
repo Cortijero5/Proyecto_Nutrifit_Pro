@@ -61,28 +61,28 @@ function pintarDetalleReceta(receta) {
     if (receta.error) {
         contenedor.innerHTML = `
             <div class="alert alert-warning">
-                ${receta.mensaje}
+                ${escaparHTML(receta.mensaje)}
             </div>
         `;
         return;
     }
 
-    document.title = receta.nombre + ' | NutriFit Pro';
+    document.title = escaparHTML(receta.nombre) + ' | NutriFit Pro';
 
     let listaIngredientes = '';
 
     receta.ingredientes.forEach(function (ingrediente) {
         listaIngredientes += `
             <li>
-                ${parseFloat(ingrediente.cantidad)} ${ingrediente.unidad} de ${ingrediente.nombre}
+                ${escaparHTML(parseFloat(ingrediente.cantidad))} ${escaparHTML(ingrediente.unidad)} de ${escaparHTML(ingrediente.nombre)}
             </li>
         `;
     });
 
     contenedor.innerHTML = `
         <section class="mb-5 text-center">
-            <h2 class="fuente-encabezado mb-3">${receta.nombre}</h2>
-            <p class="texto-secundario mb-0">${receta.descripcion}</p>
+            <h2 class="fuente-encabezado mb-3">${escaparHTML(receta.nombre)}</h2>
+            <p class="texto-secundario mb-0">${escaparHTML(receta.descripcion)}</p>
         </section>
 
         <section class="row justify-content-center">
@@ -92,8 +92,8 @@ function pintarDetalleReceta(receta) {
                     <div class="row g-0">
 
                         <div class="col-12 col-lg-5">
-                            <img src="${BASE_URL}Imagenes/${receta.imagen}" 
-                                 alt="${receta.nombre}"
+                            <img src="${BASE_URL}Imagenes/${escaparHTML(receta.imagen)}" 
+                                 alt="${escaparHTML(receta.nombre)}"
                                  class="img-fluid w-100 h-100 imagen-receta-bootstrap">
                         </div>
 
@@ -104,10 +104,10 @@ function pintarDetalleReceta(receta) {
 
                                 <ul class="list-group list-group-flush mb-4">
                                     <li class="list-group-item px-0">
-                                        <strong>Tipo:</strong> ${receta.tipo}
+                                        <strong>Tipo:</strong> ${escaparHTML(receta.tipo)}
                                     </li>
                                     <li class="list-group-item px-0">
-                                        <strong>Dificultad:</strong> ${receta.nivel}
+                                        <strong>Dificultad:</strong> ${escaparHTML(receta.nivel)}
                                     </li>
                                 </ul>
 

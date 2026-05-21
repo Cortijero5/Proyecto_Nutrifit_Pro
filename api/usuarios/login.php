@@ -21,13 +21,27 @@ try {
     }
 
     // Recogemos los datos enviados desde el formulario o desde AJAX
-    $email = $_POST['email'];
+    // Al email le hacemos trim para quitar espacios accidentales al principio o al final
+    $email = trim($_POST['email']);
+
+    // La contraseña no se limpia con trim porque una contraseña podría contener espacios
     $password = $_POST['password'];
+
+    // Validamos que no estén vacíos
+    if ($email === '' || $password === '') {
+        echo json_encode([
+            'error' => true,
+            'mensaje' => 'Email y contraseña son obligatorios.'
+        ], JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT);
+
+        exit;
+    }
 
     // Creamos el objeto Usuario
     $usuarioObj = new Usuario();
 
-    // Validamos email y contraseña
+    // Validamos email y contraseña.
+    // La comparación real se hace dentro de Usuario.php con password_verify().
     $usuario = $usuarioObj->validarLogin($email, $password);
 
     // Si el login es incorrecto, devolvemos error
@@ -66,6 +80,6 @@ try {
 } catch (Exception $ex) {
     echo json_encode([
         'error' => true,
-        'mensaje' => $ex->getMessage()
+        'mensaje' => 'Ha ocurrido un error al iniciar sesión.'
     ], JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT);
 }

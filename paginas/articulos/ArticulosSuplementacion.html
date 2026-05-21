@@ -29,112 +29,19 @@
 
 <body class="d-flex flex-column min-vh-100 fondo-principal texto-principal">
 
-  <!-- HEADER -->
-  <header class="header-nutrifit py-3 px-3 px-md-4">
-    <div class="container-fluid">
-      <div class="row align-items-center text-center text-lg-start">
+  <!-- HEADER cargado por JavaScript -->
+  <div id="header"></div>
 
-        <div class="col-12 col-lg-3 mb-3 mb-lg-0 text-center text-lg-start">
-          <a href="../../index.html">
-            <img src="../../Imagenes/LogoLetrasBG.svg" alt="Logo de NutriFit Pro" class="img-fluid logo-nutrifit">
-          </a>
-        </div>
-
-        <div class="col-12 col-lg-6 mb-3 mb-lg-0 text-center">
-          <h1 class="fuente-encabezado mb-0 titulo-principal">NutriFit Pro</h1>
-        </div>
-
-        <div class="col-12 col-lg-3">
-          <div class="d-flex justify-content-center justify-content-lg-end align-items-center gap-3 iconos-header">
-            <a href="../login.html" aria-label="Iniciar sesión">
-              <i class="fa fa-user"></i>
-            </a>
-            <a href="../Favoritos.html" aria-label="Mis guardados">
-              <i class="fa fa-heart"></i>
-            </a>
-          </div>
-        </div>
-
-      </div>
-    </div>
-  </header>
-
-  <!-- NAV -->
-  <nav class="navbar navbar-expand-lg navbar-dark nav-nutrifit rounded-3 shadow-sm mx-auto mt-4 mb-4"
-    aria-label="Navegación principal">
-    <div class="container-fluid px-3">
-
-      <button class="navbar-toggler ms-auto" type="button" data-bs-toggle="collapse" data-bs-target="#menuPrincipal"
-        aria-controls="menuPrincipal" aria-expanded="false" aria-label="Mostrar navegación">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-
-      <div class="collapse navbar-collapse" id="menuPrincipal">
-
-        <ul class="navbar-nav me-auto mb-3 mb-lg-0">
-
-          <li class="nav-item">
-            <a class="nav-link" href="../../index.html">Inicio</a>
-          </li>
-
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">Planes</a>
-            <ul class="dropdown-menu">
-              <li><a class="dropdown-item" href="../PlanPerdidaGrasa.html">Pérdida de grasa</a></li>
-              <li><a class="dropdown-item" href="../PlanGananciaMuscular.html">Ganancia muscular</a></li>
-              <li><a class="dropdown-item" href="../PlanMantenimiento.html">Mantenimiento</a></li>
-              <li><a class="dropdown-item" href="../PlanPersonalizado.html">Personalizado</a></li>
-            </ul>
-          </li>
-
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">Recetas</a>
-            <ul class="dropdown-menu">
-              <li><a class="dropdown-item" href="../RecetasAltaProteina.html">Alta proteína</a></li>
-              <li><a class="dropdown-item" href="../RecetasBajaCalorias.html">Baja en calorías</a></li>
-              <li><a class="dropdown-item" href="../RecetasVeganas.html">Veganas</a></li>
-              <li><a class="dropdown-item" href="../RecetasSinGluten.html">Sin gluten</a></li>
-            </ul>
-          </li>
-
-          <li class="nav-item">
-            <a class="nav-link" href="../Calculadora.html">Calculadora</a>
-          </li>
-
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle active" href="#" data-bs-toggle="dropdown"
-              aria-current="page">Artículos</a>
-            <ul class="dropdown-menu">
-              <li><a class="dropdown-item active" href="ArticulosSuplementacion.html">Suplementación deportiva</a></li>
-              <li><a class="dropdown-item" href="ArticulosRecuperacion.html">Recuperación muscular</a></li>
-            </ul>
-          </li>
-
-          <li class="nav-item">
-            <a class="nav-link" href="../Suscripcion.html">Premium</a>
-          </li>
-
-        </ul>
-
-        <form class="d-flex buscador-bootstrap" role="search" action="#" method="get">
-          <label for="q" class="visually-hidden">Buscar</label>
-          <input id="q" name="q" class="form-control rounded-start" type="search"
-            placeholder="Buscar recetas, dietas...">
-          <button class="btn btn-naranja rounded-end" type="submit" aria-label="Buscar">
-            <i class="fa fa-search"></i>
-          </button>
-        </form>
-
-      </div>
-    </div>
-  </nav>
+  <!-- NAV cargado por JavaScript -->
+  <div id="nav"></div>
 
   <!-- MAIN -->
   <main class="flex-grow-1">
     <div class="container py-4">
       <section class="row justify-content-center">
         <div class="col-12 col-lg-8">
-          <article class="card shadow-sm border-0 p-4 p-md-5">
+
+          <article class="card shadow-sm border-0 rounded-4 p-4 p-md-5">
 
             <h2 class="fuente-encabezado mb-4 text-center">
               ¿Es necesaria la suplementación deportiva?
@@ -147,9 +54,8 @@
 
             <p class="texto-secundario">
               La base de cualquier mejora física debe ser siempre una alimentación equilibrada, un entrenamiento
-              adecuado
-              y un descanso suficiente. Los suplementos deben entenderse únicamente como un complemento cuando la dieta
-              no cubre todas las necesidades nutricionales.
+              adecuado y un descanso suficiente. Los suplementos deben entenderse únicamente como un complemento cuando
+              la dieta no cubre todas las necesidades nutricionales.
             </p>
 
             <h3 class="fuente-encabezado mt-4 mb-3">
@@ -171,23 +77,21 @@
             </p>
 
           </article>
+
         </div>
       </section>
     </div>
   </main>
 
-  <!-- FOOTER -->
-  <footer class="footer-nutrifit text-white py-3 mt-auto">
-    <div class="container text-center">
-      <p class="mb-2">Autoría: Francisco Ortega Baños</p>
-      <ul class="list-unstyled d-flex justify-content-center gap-4 mb-0">
-        <li><a href="../Contacto.html">Contacto</a></li>
-        <li><a href="../AvisoLegal.html">Aviso Legal</a></li>
-      </ul>
-    </div>
-  </footer>
+  <!-- FOOTER cargado por JavaScript -->
+  <div id="footer"></div>
 
+  <!-- JS Bootstrap -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+  <!-- JS propio -->
+  <script src="../../js/config.js"></script>
+  <script src="../../js/layout.js"></script>
 </body>
 
 </html>

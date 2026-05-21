@@ -56,13 +56,13 @@ function pintarDetallePlan(plan) {
     if (plan.error) {
         contenedor.innerHTML = `
             <div class="alert alert-warning">
-                ${plan.mensaje}
+                ${escaparHTML(plan.mensaje)}
             </div>
         `;
         return;
     }
 
-    document.title = plan.nombre + ' | NutriFit Pro';
+    document.title = escaparHTML(plan.nombre) + ' | NutriFit Pro';
 
     let textoPremium = 'Gratuito';
 
@@ -70,66 +70,44 @@ function pintarDetallePlan(plan) {
         textoPremium = 'Premium';
     }
 
-    let listaRecetas = '';
-
-    plan.recetas.forEach(function (receta) {
-        listaRecetas += `
-            <li class="list-group-item px-0">
-                <div class="d-flex flex-column flex-md-row justify-content-between align-items-md-center gap-3">
-                    <div>
-                        <strong>${receta.dia} - ${receta.comida}</strong><br>
-                        <span>${receta.nombre}</span>
-                        <span class="text-muted">(${receta.tipo})</span>
-                    </div>
-
-                    <div>
-                        <a href="${BASE_URL}paginas/DetalleReceta.html?id=${receta.id_receta}" 
-                           class="btn btn-sm btn-naranja">
-                            Ver receta
-                        </a>
-                    </div>
-                </div>
-            </li>
-        `;
-    });
+    const recetasPorDia = agruparRecetasPorDia(plan.recetas);
+    const tarjetasDias = pintarTarjetasDias(recetasPorDia);
 
     contenedor.innerHTML = `
         <section class="mb-5">
-            <h2 class="fuente-encabezado mb-3">${plan.nombre}</h2>
-            <p class="texto-secundario mb-0">${plan.descripcion}</p>
+            <h2 class="fuente-encabezado mb-3">${escaparHTML(plan.nombre)}</h2>
+            <p class="texto-secundario mb-0">${escaparHTML(plan.descripcion)}</p>
         </section>
 
-        <section class="mb-4">
-            <div class="card border-0 shadow-sm rounded-4">
-                <div class="card-body p-4">
-                    <h3 class="fuente-encabezado h4 mb-3">Objetivo</h3>
-                    <p class="mb-0 texto-secundario">
-                        ${plan.objetivo}
-                    </p>
+        <section class="row g-4 mb-4">
+            <div class="col-12 col-lg-6">
+                <div class="card border-0 shadow-sm rounded-4 h-100">
+                    <div class="card-body p-4">
+                        <h3 class="fuente-encabezado h4 mb-3">Objetivo</h3>
+                        <p class="mb-0 texto-secundario">
+                            ${escaparHTML(capitalizarPrimeraLetra(plan.objetivo))}
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-12 col-lg-6">
+                <div class="card border-0 shadow-sm rounded-4 h-100">
+                    <div class="card-body p-4">
+                        <h3 class="fuente-encabezado h4 mb-3">Tipo de plan</h3>
+                        <p class="mb-0 texto-secundario">
+                            ${escaparHTML(textoPremium)}
+                        </p>
+                    </div>
                 </div>
             </div>
         </section>
 
         <section class="mb-4">
-            <div class="card border-0 shadow-sm rounded-4">
-                <div class="card-body p-4">
-                    <h3 class="fuente-encabezado h4 mb-3">Tipo de plan</h3>
-                    <p class="mb-0 texto-secundario">
-                        ${textoPremium}
-                    </p>
-                </div>
-            </div>
-        </section>
+            <h3 class="fuente-encabezado h4 mb-4">Plan semanal</h3>
 
-        <section class="mb-4">
-            <div class="card border-0 shadow-sm rounded-4">
-                <div class="card-body p-4">
-                    <h3 class="fuente-encabezado h4 mb-3">Recetas del plan</h3>
-
-                    <ul class="list-group list-group-flush">
-                        ${listaRecetas}
-                    </ul>
-                </div>
+            <div class="row g-4">
+                ${tarjetasDias}
             </div>
         </section>
 
@@ -146,4 +124,132 @@ function pintarDetallePlan(plan) {
             Volver a planes
         </a>
     `;
+}
+
+// Agrupa las recetas por día para poder pintar una tarjeta por cada día
+function agruparRecetasPorDia(recetas) {
+    const recetasPorDia = {};
+
+    recetas.forEach(function (receta) {
+        const dia = receta.dia;
+
+        if (!recetasPorDia[dia]) {
+            recetasPorDia[dia] = [];
+        }
+
+        recetasPorDia[dia].push(receta);
+    });
+
+    return recetasPorDia;
+}
+
+// Pinta las tarjetas de cada día siguiendo el orden semanal
+function pintarTarjetasDias(recetasPorDia) {
+    const ordenDias = [
+        'lunes',
+        'martes',
+        'miércoles',
+        'jueves',
+        'viernes',
+        'sábado',
+        'domingo'
+    ];
+
+    let tarjetas = '';
+
+    ordenDias.forEach(function (dia) {
+        const recetasDia = recetasPorDia[dia] || [];
+
+        tarjetas += `
+            <div class="col-12 col-lg-6">
+                <article class="card border-0 shadow-sm rounded-4 h-100">
+                    <div class="card-body p-4">
+                        <h4 class="fuente-encabezado h5 mb-3">
+                            ${escaparHTML(capitalizarPrimeraLetra(dia))}
+                        </h4>
+
+                        ${pintarComidasDia(recetasDia)}
+                    </div>
+                </article>
+            </div>
+        `;
+    });
+
+    return tarjetas;
+}
+
+// Pinta las comidas de un día concreto
+function pintarComidasDia(recetasDia) {
+    const ordenComidas = [
+        'desayuno',
+        'comida',
+        'merienda',
+        'cena'
+    ];
+
+    if (recetasDia.length === 0) {
+        return `
+            <div class="alert alert-light border mb-0">
+                No hay recetas asignadas para este día.
+            </div>
+        `;
+    }
+
+    let htmlComidas = '<div class="d-flex flex-column gap-3">';
+
+    ordenComidas.forEach(function (comida) {
+        const recetaComida = recetasDia.find(function (receta) {
+            return receta.comida === comida;
+        });
+
+        if (recetaComida) {
+            htmlComidas += `
+                <div class="border rounded-4 p-3">
+                    <div class="d-flex flex-column flex-md-row justify-content-between align-items-md-center gap-3">
+                        <div>
+                            <p class="mb-1 fw-bold">
+                                ${escaparHTML(capitalizarPrimeraLetra(comida))}
+                            </p>
+
+                            <p class="mb-1">
+                                ${escaparHTML(recetaComida.nombre)}
+                            </p>
+
+                            <p class="mb-0 texto-secundario small">
+                                ${escaparHTML(recetaComida.tipo)}
+                            </p>
+                        </div>
+
+                        <div>
+                            <a href="${BASE_URL}paginas/DetalleReceta.html?id=${encodeURIComponent(recetaComida.id_receta)}" 
+                               class="btn btn-sm btn-naranja">
+                                Ver receta
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            `;
+        } else {
+            htmlComidas += `
+                <div class="border rounded-4 p-3 bg-light">
+                    <p class="mb-0 texto-secundario">
+                        <strong>${escaparHTML(capitalizarPrimeraLetra(comida))}:</strong> sin receta asignada.
+                    </p>
+                </div>
+            `;
+        }
+    });
+
+    htmlComidas += '</div>';
+
+    return htmlComidas;
+}
+
+// Convierte la primera letra en mayúscula
+function capitalizarPrimeraLetra(texto) {
+    if (!texto) {
+        return '';
+    }
+
+    return texto.charAt(0).toUpperCase() + texto.slice(1);
 }

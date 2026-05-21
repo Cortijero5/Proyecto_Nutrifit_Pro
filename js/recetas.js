@@ -8,15 +8,21 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     // Leemos los parámetros de la URL.
-    // Ejemplo: Recetas.html?tipo=Vegana
+    // Ejemplos:
+    // Recetas.html?tipo=Vegana
+    // Recetas.html?busqueda=pollo
     const parametros = new URLSearchParams(window.location.search);
     const tipo = parametros.get('tipo');
+    const busqueda = parametros.get('busqueda');
 
-    actualizarCabeceraRecetas(tipo);
-
-    if (tipo) {
+    if (busqueda) {
+        actualizarCabeceraBusqueda(busqueda);
+        cargarRecetasPorBusqueda(busqueda);
+    } else if (tipo) {
+        actualizarCabeceraRecetas(tipo);
         cargarRecetasPorTipo(tipo);
     } else {
+        actualizarCabeceraRecetas(null);
         cargarRecetas();
     }
 });
@@ -48,6 +54,22 @@ function cargarRecetasPorTipo(tipo) {
         })
         .catch(function (error) {
             console.error('Error al cargar recetas por tipo:', error);
+        });
+}
+
+// Función que pide recetas según una búsqueda
+function cargarRecetasPorBusqueda(busqueda) {
+    const url = API.recetas.buscar + '?busqueda=' + encodeURIComponent(busqueda);
+
+    fetch(url)
+        .then(function (respuesta) {
+            return respuesta.json();
+        })
+        .then(function (recetas) {
+            pintarRecetas(recetas);
+        })
+        .catch(function (error) {
+            console.error('Error al buscar recetas:', error);
         });
 }
 
@@ -84,6 +106,19 @@ function actualizarCabeceraRecetas(tipo) {
     }
 }
 
+// Función que cambia el título y descripción cuando se está buscando
+function actualizarCabeceraBusqueda(busqueda) {
+    const titulo = document.getElementById('titulo-recetas');
+    const descripcion = document.getElementById('descripcion-recetas');
+
+    if (!titulo || !descripcion) {
+        return;
+    }
+
+    titulo.textContent = 'Resultados de búsqueda';
+    descripcion.textContent = 'Resultados encontrados para: "' + busqueda + '".';
+}
+
 // Función que recibe el array de recetas y crea las tarjetas HTML
 function pintarRecetas(recetas) {
     const contenedor = document.getElementById('contenedor-recetas');
@@ -98,7 +133,7 @@ function pintarRecetas(recetas) {
         contenedor.innerHTML = `
             <div class="col-12">
                 <div class="alert alert-warning">
-                    ${recetas.mensaje}
+                    ${escaparHTML(recetas.mensaje)}
                 </div>
             </div>
         `;
@@ -111,18 +146,18 @@ function pintarRecetas(recetas) {
 
         columna.innerHTML = `
             <article class="card h-100 tarjeta-plan border-0 shadow-sm">
-                <a href="${BASE_URL}paginas/DetalleReceta.html?id=${receta.id_receta}" 
+                <a href="${BASE_URL}paginas/DetalleReceta.html?id=${encodeURIComponent(receta.id_receta)}" 
                    class="text-decoration-none text-reset h-100"
-                   aria-label="Ver receta: ${receta.nombre}">
+                   aria-label="Ver receta: ${escaparHTML(receta.nombre)}">
 
-                    <img src="${BASE_URL}Imagenes/${receta.imagen}" 
+                    <img src="${BASE_URL}Imagenes/${escaparHTML(receta.imagen)}" 
                          class="card-img-top imagen-card" 
-                         alt="${receta.nombre}">
+                         alt="${escaparHTML(receta.nombre)}">
 
                     <div class="card-body">
-                        <h3 class="card-title fuente-encabezado h4">${receta.nombre}</h3>
+                        <h3 class="card-title fuente-encabezado h4">${escaparHTML(receta.nombre)}</h3>
                         <p class="card-text texto-secundario">
-                            ${receta.nivel} · ${receta.tipo}
+                            ${escaparHTML(receta.nivel)} · ${escaparHTML(receta.tipo)}
                         </p>
                     </div>
                 </a>

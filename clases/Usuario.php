@@ -43,9 +43,8 @@ class Usuario
             return false;
         }
 
-        // Comparamos la contraseña escrita con la contraseña guardada en la base de datos.
-        // De momento usamos comparación directa porque estamos trabajando con contraseñas de prueba.
-        if ($password !== $usuario['password']) {
+        // Comprobamos la contraseña escrita contra el hash guardado en la base de datos
+        if (!password_verify($password, $usuario['password'])) {
             return false;
         }
 
@@ -72,8 +71,6 @@ class Usuario
 
         $suscripcion = $resultado->fetch();
 
-        // Si encuentra una suscripción activa, devuelve true.
-        // Si no encuentra nada, devuelve false.
         if ($suscripcion) {
             return true;
         } else {

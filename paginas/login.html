@@ -29,115 +29,11 @@
 
 <body class="d-flex flex-column min-vh-100 fondo-principal texto-principal">
 
-    <!-- HEADER -->
-    <header class="header-nutrifit py-3 px-3 px-md-4">
-        <div class="container-fluid">
-            <div class="row align-items-center text-center text-lg-start">
+    <!-- HEADER cargado por JavaScript -->
+    <div id="header"></div>
 
-                <div class="col-12 col-lg-3 mb-3 mb-lg-0 text-center text-lg-start">
-                    <a href="../index.html">
-                        <img src="../Imagenes/LogoLetrasBG.svg" alt="Logo de NutriFit Pro"
-                            class="img-fluid logo-nutrifit">
-                    </a>
-                </div>
-
-                <div class="col-12 col-lg-6 mb-3 mb-lg-0 text-center">
-                    <h1 class="fuente-encabezado mb-0 titulo-principal">NutriFit Pro</h1>
-                </div>
-
-                <div class="col-12 col-lg-3">
-                    <div
-                        class="d-flex justify-content-center justify-content-lg-end align-items-center gap-3 iconos-header">
-                        <a href="login.html" aria-label="Iniciar sesión">
-                            <i class="fa fa-user"></i>
-                        </a>
-                        <a href="Favoritos.html" aria-label="Mis guardados">
-                            <i class="fa fa-heart"></i>
-                        </a>
-                    </div>
-                </div>
-
-            </div>
-        </div>
-    </header>
-
-    <!-- NAV -->
-    <nav class="navbar navbar-expand-lg navbar-dark nav-nutrifit rounded-3 shadow-sm mx-auto mt-4 mb-4"
-        aria-label="Navegación principal">
-        <div class="container-fluid px-3">
-
-            <button class="navbar-toggler ms-auto" type="button" data-bs-toggle="collapse"
-                data-bs-target="#menuPrincipal" aria-controls="menuPrincipal" aria-expanded="false"
-                aria-label="Mostrar navegación">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-
-            <div class="collapse navbar-collapse" id="menuPrincipal">
-                <ul class="navbar-nav me-auto mb-3 mb-lg-0 align-items-lg-center">
-
-                    <li class="nav-item">
-                        <a class="nav-link" href="../index.html">Inicio</a>
-                    </li>
-
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="dropdownPlanes" role="button"
-                            data-bs-toggle="dropdown" aria-expanded="false">
-                            Planes
-                        </a>
-                        <ul class="dropdown-menu" aria-labelledby="dropdownPlanes">
-                            <li><a class="dropdown-item" href="PlanPerdidaGrasa.html">Pérdida de grasa</a></li>
-                            <li><a class="dropdown-item" href="PlanGananciaMuscular.html">Ganancia muscular</a></li>
-                            <li><a class="dropdown-item" href="PlanMantenimiento.html">Mantenimiento</a></li>
-                            <li><a class="dropdown-item" href="PlanPersonalizado.html">Personalizado</a></li>
-                        </ul>
-                    </li>
-
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="dropdownRecetas" role="button"
-                            data-bs-toggle="dropdown" aria-expanded="false">
-                            Recetas
-                        </a>
-                        <ul class="dropdown-menu" aria-labelledby="dropdownRecetas">
-                            <li><a class="dropdown-item" href="RecetasAltaProteina.html">Alta proteína</a></li>
-                            <li><a class="dropdown-item" href="RecetasBajaCalorias.html">Baja en calorías</a></li>
-                            <li><a class="dropdown-item" href="RecetasVeganas.html">Veganas</a></li>
-                            <li><a class="dropdown-item" href="RecetasSinGluten.html">Sin gluten</a></li>
-                        </ul>
-                    </li>
-
-                    <li class="nav-item">
-                        <a class="nav-link" href="Calculadora.html">Calculadora</a>
-                    </li>
-
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="dropdownArticulos" role="button"
-                            data-bs-toggle="dropdown" aria-expanded="false">
-                            Artículos
-                        </a>
-                        <ul class="dropdown-menu" aria-labelledby="dropdownArticulos">
-                            <li><a class="dropdown-item" href="articulos/ArticulosSuplementacion.html">Suplementación
-                                    deportiva</a></li>
-                            <li><a class="dropdown-item" href="articulos/ArticulosRecuperacion.html">Recuperación
-                                    muscular</a></li>
-                        </ul>
-                    </li>
-
-                    <li class="nav-item">
-                        <a class="nav-link" href="Suscripcion.html">Premium</a>
-                    </li>
-                </ul>
-
-                <form class="d-flex buscador-bootstrap" role="search" action="#" method="get">
-                    <label for="q" class="visually-hidden">Buscar</label>
-                    <input id="q" name="q" class="form-control rounded-start" type="search"
-                        placeholder="Buscar recetas, dietas...">
-                    <button class="btn btn-naranja rounded-end" type="submit" aria-label="Buscar">
-                        <i class="fa fa-search"></i>
-                    </button>
-                </form>
-            </div>
-        </div>
-    </nav>
+    <!-- NAV cargado por JavaScript -->
+    <div id="nav"></div>
 
     <!-- MAIN -->
     <main class="flex-grow-1">
@@ -145,17 +41,19 @@
             <section class="row justify-content-center">
                 <div class="col-12 col-lg-8 col-xl-5">
 
+                    <div id="mensaje-login" class="mb-3"></div>
+
                     <div class="card border-0 shadow-sm rounded-4">
                         <div class="card-body p-4 p-md-5">
 
                             <h2 class="fuente-encabezado mb-3 text-center">Iniciar sesión</h2>
 
                             <p class="texto-secundario mb-4 text-center">
-                                Accede a tu cuenta para guardar recetas, gestionar favoritos y acceder a futuras
-                                funciones premium.
+                                Accede a tu cuenta para consultar tu estado, usar funciones personalizadas y acceder a
+                                futuras funcionalidades premium.
                             </p>
 
-                            <form>
+                            <form id="form-login">
                                 <div class="mb-3">
                                     <label for="email" class="form-label">Correo electrónico</label>
                                     <input type="email" id="email" name="email" class="form-control" required>
@@ -166,31 +64,43 @@
                                     <input type="password" id="password" name="password" class="form-control" required>
                                 </div>
 
-                                <div class="d-flex justify-content-between align-items-center flex-wrap gap-2 mb-4">
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="checkbox" id="recordarme"
-                                            name="recordarme">
-                                        <label class="form-check-label" for="recordarme">
-                                            Recordarme
-                                        </label>
-                                    </div>
-
-                                    <a href="#" class="enlace-login">¿Has olvidado tu contraseña?</a>
-                                </div>
-
                                 <div class="d-grid mb-3">
                                     <button type="submit" class="btn btn-naranja btn-lg">
                                         Entrar
                                     </button>
                                 </div>
-
-                                <p class="text-center texto-secundario mb-0">
-                                    ¿No tienes cuenta?
-                                    <a href="#" class="enlace-login">Crear cuenta</a>
-                                </p>
                             </form>
 
                         </div>
+                    </div>
+
+                    <div class="alert alerta-nota mt-4" role="note">
+                        <h3 class="fuente-encabezado h5 mb-3">Usuarios de prueba</h3>
+
+                        <div class="mb-3">
+                            <p class="mb-1"><strong>Usuario gratuito</strong></p>
+                            <p class="mb-1">Email: <code>fran.free@nutrifit.es</code></p>
+                            <p class="mb-0">Contraseña: <code>free123</code></p>
+                        </div>
+
+                        <div class="mb-3">
+                            <p class="mb-1"><strong>Usuario premium</strong></p>
+                            <p class="mb-1">Email: <code>carlos.premium@nutrifit.es</code></p>
+                            <p class="mb-0">Contraseña: <code>premium123</code></p>
+                        </div>
+
+                        <div class="mb-0">
+                            <p class="mb-1"><strong>Administrador</strong></p>
+                            <p class="mb-1">Email: <code>admin@nutrifit.es</code></p>
+                            <p class="mb-0">Contraseña: <code>admin123</code></p>
+                        </div>
+
+                        <hr>
+
+                        <p class="mb-0 small texto-secundario">
+                            Las contraseñas se guardan en la base de datos mediante hash y se validan en el servidor
+                            con <code>password_verify()</code>.
+                        </p>
                     </div>
 
                 </div>
@@ -198,19 +108,17 @@
         </div>
     </main>
 
-    <!-- FOOTER -->
-    <footer class="footer-nutrifit text-white py-3 mt-auto">
-        <div class="container text-center">
-            <p class="mb-2">Autoría: Francisco Ortega Baños</p>
-            <ul class="list-unstyled d-flex justify-content-center gap-4 mb-0 flex-wrap">
-                <li><a href="Contacto.html">Contacto</a></li>
-                <li><a href="AvisoLegal.html">Aviso Legal</a></li>
-            </ul>
-        </div>
-    </footer>
+    <!-- FOOTER cargado por JavaScript -->
+    <div id="footer"></div>
 
     <!-- JS Bootstrap -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- JS propio -->
+    <script src="../js/config.js"></script>
+    <script src="../js/utilidades.js"></script>
+    <script src="../js/layout.js"></script>
+    <script src="../js/login.js"></script>
 </body>
 
 </html>
