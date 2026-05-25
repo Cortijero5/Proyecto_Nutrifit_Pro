@@ -1,4 +1,3 @@
-// Cuando el documento HTML esté cargado, ejecutamos la función principal
 document.addEventListener('DOMContentLoaded', function () {
 
     const contenedor = document.getElementById('contenedor-recetas');
@@ -7,10 +6,6 @@ document.addEventListener('DOMContentLoaded', function () {
         return;
     }
 
-    // Leemos los parámetros de la URL.
-    // Ejemplos:
-    // Recetas.html?tipo=Vegana
-    // Recetas.html?busqueda=pollo
     const parametros = new URLSearchParams(window.location.search);
     const tipo = parametros.get('tipo');
     const busqueda = parametros.get('busqueda');
@@ -22,12 +17,11 @@ document.addEventListener('DOMContentLoaded', function () {
         actualizarCabeceraRecetas(tipo);
         cargarRecetasPorTipo(tipo);
     } else {
-        actualizarCabeceraRecetas(null);
+        actualizarCabeceraRecetas();
         cargarRecetas();
     }
 });
 
-// Función que pide todas las recetas a la API
 function cargarRecetas() {
     fetch(API.recetas.listar)
         .then(function (respuesta) {
@@ -41,7 +35,6 @@ function cargarRecetas() {
         });
 }
 
-// Función que pide recetas filtradas por tipo
 function cargarRecetasPorTipo(tipo) {
     const url = API.recetas.porTipo + '?tipo=' + encodeURIComponent(tipo);
 
@@ -57,7 +50,6 @@ function cargarRecetasPorTipo(tipo) {
         });
 }
 
-// Función que pide recetas según una búsqueda
 function cargarRecetasPorBusqueda(busqueda) {
     const url = API.recetas.buscar + '?busqueda=' + encodeURIComponent(busqueda);
 
@@ -73,7 +65,6 @@ function cargarRecetasPorBusqueda(busqueda) {
         });
 }
 
-// Función que cambia el título y descripción según el tipo
 function actualizarCabeceraRecetas(tipo) {
     const titulo = document.getElementById('titulo-recetas');
     const descripcion = document.getElementById('descripcion-recetas');
@@ -82,31 +73,34 @@ function actualizarCabeceraRecetas(tipo) {
         return;
     }
 
-    if (!tipo) {
-        titulo.textContent = 'Todas las recetas';
-        descripcion.textContent = 'Explora todas las recetas disponibles en NutriFit Pro.';
-        return;
-    }
+    switch (tipo) {
+        case 'Alta proteína':
+            titulo.textContent = 'Recetas altas en proteína';
+            descripcion.textContent = 'Recetas orientadas a rendimiento y ganancia muscular: fáciles, rápidas y con ingredientes comunes.';
+            break;
 
-    if (tipo === 'Alta proteína') {
-        titulo.textContent = 'Recetas altas en proteína';
-        descripcion.textContent = 'Recetas orientadas a rendimiento y ganancia muscular: fáciles, rápidas y con ingredientes comunes.';
-    } else if (tipo === 'Baja en calorías') {
-        titulo.textContent = 'Recetas bajas en calorías';
-        descripcion.textContent = 'Opciones ligeras, saciantes y pensadas para controlar calorías sin complicarte.';
-    } else if (tipo === 'Vegana') {
-        titulo.textContent = 'Recetas veganas';
-        descripcion.textContent = 'Recetas 100% vegetales, equilibradas y fáciles: pensadas para el día a día y adaptables a tus macros.';
-    } else if (tipo === 'Sin gluten') {
-        titulo.textContent = 'Recetas sin gluten';
-        descripcion.textContent = 'Recetas aptas para evitar gluten, con alimentos sencillos y preparaciones prácticas.';
-    } else {
-        titulo.textContent = 'Recetas';
-        descripcion.textContent = 'Explora las recetas disponibles en NutriFit Pro.';
+        case 'Baja en calorías':
+            titulo.textContent = 'Recetas bajas en calorías';
+            descripcion.textContent = 'Opciones ligeras, saciantes y pensadas para controlar calorías sin complicarte.';
+            break;
+
+        case 'Vegana':
+            titulo.textContent = 'Recetas veganas';
+            descripcion.textContent = 'Recetas 100% vegetales, equilibradas y fáciles: pensadas para el día a día y adaptables a tus macros.';
+            break;
+
+        case 'Sin gluten':
+            titulo.textContent = 'Recetas sin gluten';
+            descripcion.textContent = 'Recetas aptas para evitar gluten, con alimentos sencillos y preparaciones prácticas.';
+            break;
+
+        default:
+            titulo.textContent = 'Todas las recetas';
+            descripcion.textContent = 'Explora todas las recetas disponibles en NutriFit Pro.';
+            break;
     }
 }
 
-// Función que cambia el título y descripción cuando se está buscando
 function actualizarCabeceraBusqueda(busqueda) {
     const titulo = document.getElementById('titulo-recetas');
     const descripcion = document.getElementById('descripcion-recetas');
@@ -119,7 +113,6 @@ function actualizarCabeceraBusqueda(busqueda) {
     descripcion.textContent = 'Resultados encontrados para: "' + busqueda + '".';
 }
 
-// Función que recibe el array de recetas y crea las tarjetas HTML
 function pintarRecetas(recetas) {
     const contenedor = document.getElementById('contenedor-recetas');
 
@@ -135,8 +128,7 @@ function pintarRecetas(recetas) {
                 <div class="alert alert-warning">
                     ${escaparHTML(recetas.mensaje)}
                 </div>
-            </div>
-        `;
+            </div>`;
         return;
     }
 
@@ -161,8 +153,7 @@ function pintarRecetas(recetas) {
                         </p>
                     </div>
                 </a>
-            </article>
-        `;
+            </article>`;
 
         contenedor.appendChild(columna);
     });

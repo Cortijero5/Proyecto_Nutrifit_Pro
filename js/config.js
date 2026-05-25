@@ -1,7 +1,5 @@
-// Ruta base del proyecto dentro de localhost
 const BASE_URL = '/Nutrifit_Pro/';
 
-// Endpoints de la API REST
 const API = {
     recetas: {
         listar: BASE_URL + 'api/recetas/listar.php',

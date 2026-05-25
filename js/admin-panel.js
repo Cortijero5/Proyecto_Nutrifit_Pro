@@ -1,11 +1,9 @@
-// Cuando el documento esté cargado, comprobamos si el usuario puede entrar al panel
-document.addEventListener('DOMContentLoaded', function () {
+document.addEventListener("DOMContentLoaded", function () {
     comprobarAccesoAdmin();
 });
 
-// Comprueba la sesión actual usando el endpoint de sesión
 function comprobarAccesoAdmin() {
-    const zonaAdmin = document.getElementById('zona-admin');
+    const zonaAdmin = document.getElementById("zona-admin");
 
     if (!zonaAdmin) {
         return;
@@ -16,44 +14,37 @@ function comprobarAccesoAdmin() {
             return respuesta.json();
         })
         .then(function (datos) {
-
-            // Si no está logueado, lo mandamos al login
             if (!datos.logueado) {
-                window.location.href = BASE_URL + 'paginas/login.html';
+                window.location.href = BASE_URL + "paginas/login.html";
                 return;
             }
 
-            // Si está logueado pero no es admin, mostramos acceso denegado
-            if (datos.usuario.rol !== 'admin') {
+            if (datos.usuario.rol !== "admin") {
                 zonaAdmin.innerHTML = `
                     <div class="alert alert-warning">
                         <h3 class="fuente-encabezado h5 mb-2">Acceso denegado</h3>
                         <p class="mb-0">
                             No tienes permisos para acceder al panel de administración.
                         </p>
-                    </div>
-                `;
+                    </div>`;
                 return;
             }
 
-            // Si es admin, cargamos el panel
             pintarPanelAdmin(datos.usuario);
             cargarRecetasAdmin();
         })
         .catch(function (error) {
-            console.error('Error al comprobar acceso admin:', error);
+            console.error("Error al comprobar acceso admin:", error);
 
             zonaAdmin.innerHTML = `
                 <div class="alert alert-danger">
                     Ha ocurrido un error al comprobar los permisos.
-                </div>
-            `;
+                </div>`;
         });
 }
 
-// Pinta la estructura inicial del panel
 function pintarPanelAdmin(usuario) {
-    const zonaAdmin = document.getElementById('zona-admin');
+    const zonaAdmin = document.getElementById("zona-admin");
 
     zonaAdmin.innerHTML = `
         <div class="alert alerta-nota mb-4" role="note">
@@ -148,7 +139,6 @@ function pintarPanelAdmin(usuario) {
                 </div>
 
                 <div id="gestion-ingredientes-admin" class="d-none mb-4">
-                    <!-- JavaScript cargará aquí la gestión de ingredientes -->
                 </div>
 
                 <div id="contenedor-recetas-admin">
@@ -158,48 +148,43 @@ function pintarPanelAdmin(usuario) {
                 </div>
 
             </div>
-        </section>
-    `;
+        </section>`;
 
     prepararEventosFormularioReceta();
 }
 
-// Cierra la zona de gestión de ingredientes
 function cerrarGestionIngredientes() {
-    const contenedor = document.getElementById('gestion-ingredientes-admin');
+    const contenedor = document.getElementById("gestion-ingredientes-admin");
 
     if (contenedor) {
-        contenedor.classList.add('d-none');
-        contenedor.innerHTML = '';
+        contenedor.classList.add("d-none");
+        contenedor.innerHTML = "";
     }
 }
 
-// Muestra mensajes dentro del panel admin
 function mostrarMensajeAdmin(mensaje, esError) {
-    const contenedor = document.getElementById('mensaje-admin');
+    const contenedor = document.getElementById("mensaje-admin");
 
     if (!contenedor) {
         return;
     }
 
-    let clase = 'alert-success';
+    let clase = "alert-success";
 
     if (esError) {
-        clase = 'alert-danger';
+        clase = "alert-danger";
     }
 
     contenedor.innerHTML = `
         <div class="alert ${clase}">
             ${escaparHTML(mensaje)}
-        </div>
-    `;
+        </div>`;
 }
 
-// Limpia el mensaje del panel admin
 function limpiarMensajeAdmin() {
-    const contenedor = document.getElementById('mensaje-admin');
+    const contenedor = document.getElementById("mensaje-admin");
 
     if (contenedor) {
-        contenedor.innerHTML = '';
+        contenedor.innerHTML = "";
     }
 }

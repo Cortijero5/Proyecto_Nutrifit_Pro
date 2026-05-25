@@ -1,22 +1,17 @@
 <?php
-
-// Importamos la clase BaseDatos para poder hacer consultas a la base de datos
 require_once __DIR__ . '/BaseDatos.php';
 
 class Plan
 {
-    // Guardamos una instancia de BaseDatos
     private $bd;
 
     public function __construct()
     {
-        // Creamos el objeto BaseDatos para usar la conexión PDO
         $this->bd = new BaseDatos();
     }
 
     public function listarTodos()
     {
-        // Consulta SQL para obtener todos los planes
         $sql = "SELECT 
                     id_plan,
                     nombre,
@@ -35,7 +30,6 @@ class Plan
 
     public function obtenerPorId($id_plan)
     {
-        // Consulta SQL para obtener un plan concreto por su id
         $sql = "SELECT 
                     id_plan,
                     nombre,
@@ -54,8 +48,6 @@ class Plan
 
     public function obtenerRecetas($id_plan)
     {
-        // Consulta SQL para obtener las recetas asociadas a un plan.
-        // Usamos relación mediante WHERE, sin JOIN explícito.
         $sql = "SELECT 
                 r.id_receta,
                 r.nombre,

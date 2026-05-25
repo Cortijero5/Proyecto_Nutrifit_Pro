@@ -1,35 +1,26 @@
-// Cuando el documento esté cargado, ejecutamos la función principal
-document.addEventListener('DOMContentLoaded', function () {
+document.addEventListener("DOMContentLoaded", function () {
     cargarDetalleReceta();
 });
 
-// Función principal para cargar el detalle de una receta
 function cargarDetalleReceta() {
-    const contenedor = document.getElementById('detalle-receta');
+    const contenedor = document.getElementById("detalle-receta");
 
     if (!contenedor) {
         return;
     }
 
-    // URLSearchParams permite leer los parámetros de la URL
-    // Ejemplo: DetalleReceta.html?id=1
     const parametros = new URLSearchParams(window.location.search);
+    const id = parametros.get("id");
 
-    // Obtenemos el valor del parámetro id
-    const id = parametros.get('id');
-
-    // Si no hay id, mostramos error
     if (!id) {
         contenedor.innerHTML = `
             <div class="alert alert-warning">
                 No se ha indicado ninguna receta.
-            </div>
-        `;
+            </div>`;
         return;
     }
 
-    // Construimos la URL del endpoint detalle
-    const url = API.recetas.detalle + '?id=' + encodeURIComponent(id);
+    const url = API.recetas.detalle + "?id=" + encodeURIComponent(id);
 
     fetch(url)
         .then(function (respuesta) {
@@ -39,44 +30,39 @@ function cargarDetalleReceta() {
             pintarDetalleReceta(receta);
         })
         .catch(function (error) {
-            console.error('Error al cargar el detalle de la receta:', error);
+            console.error("Error al cargar el detalle de la receta:", error);
 
             contenedor.innerHTML = `
                 <div class="alert alert-danger">
                     Ha ocurrido un error al cargar la receta.
-                </div>
-            `;
+                </div>`;
         });
 }
 
-// Función que pinta el detalle de la receta en pantalla
 function pintarDetalleReceta(receta) {
-    const contenedor = document.getElementById('detalle-receta');
+    const contenedor = document.getElementById("detalle-receta");
 
     if (!contenedor) {
         return;
     }
 
-    // Si la API devuelve error, lo mostramos
     if (receta.error) {
         contenedor.innerHTML = `
             <div class="alert alert-warning">
                 ${escaparHTML(receta.mensaje)}
-            </div>
-        `;
+            </div>`;
         return;
     }
 
-    document.title = escaparHTML(receta.nombre) + ' | NutriFit Pro';
+    document.title = receta.nombre + " | NutriFit Pro";
 
-    let listaIngredientes = '';
+    let listaIngredientes = "";
 
     receta.ingredientes.forEach(function (ingrediente) {
         listaIngredientes += `
             <li>
                 ${escaparHTML(parseFloat(ingrediente.cantidad))} ${escaparHTML(ingrediente.unidad)} de ${escaparHTML(ingrediente.nombre)}
-            </li>
-        `;
+            </li>`;
     });
 
     contenedor.innerHTML = `
@@ -92,7 +78,7 @@ function pintarDetalleReceta(receta) {
                     <div class="row g-0">
 
                         <div class="col-12 col-lg-5">
-                            <img src="${BASE_URL}Imagenes/${escaparHTML(receta.imagen)}" 
+                            <img src="${BASE_URL}Imagenes/${escaparHTML(receta.imagen)}"
                                  alt="${escaparHTML(receta.nombre)}"
                                  class="img-fluid w-100 h-100 imagen-receta-bootstrap">
                         </div>
@@ -135,6 +121,5 @@ function pintarDetalleReceta(receta) {
                 </div>
 
             </div>
-        </section>
-    `;
+        </section>`;
 }

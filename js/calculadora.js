@@ -1,33 +1,33 @@
-// Guardamos aquí todos los ingredientes cargados desde la API
 let ingredientesDisponibles = [];
-
-// Guardamos aquí los ingredientes que el usuario va añadiendo a la calculadora
 let ingredientesSeleccionados = [];
 
-// Cuando cargue el documento, iniciamos la calculadora
-document.addEventListener('DOMContentLoaded', function () {
+document.addEventListener("DOMContentLoaded", function () {
     cargarIngredientesCalculadora();
     prepararFormularioCalculadora();
 });
 
-// Función que pide los ingredientes a la API
 function cargarIngredientesCalculadora() {
     fetch(API.ingredientes.listar)
         .then(function (respuesta) {
             return respuesta.json();
         })
         .then(function (ingredientes) {
+            if (ingredientes.error) {
+                mostrarMensajeCalculadora(ingredientes.mensaje, true);
+                return;
+            }
+
             ingredientesDisponibles = ingredientes;
             rellenarSelectIngredientes(ingredientes);
         })
         .catch(function (error) {
-            console.error('Error al cargar ingredientes:', error);
+            console.error("Error al cargar ingredientes:", error);
+            mostrarMensajeCalculadora("No se han podido cargar los ingredientes.", true);
         });
 }
 
-// Función que rellena el select con los ingredientes
 function rellenarSelectIngredientes(ingredientes) {
-    const select = document.getElementById('ingrediente');
+    const select = document.getElementById("ingrediente");
 
     if (!select) {
         return;
@@ -36,7 +36,7 @@ function rellenarSelectIngredientes(ingredientes) {
     select.innerHTML = '<option value="">Selecciona un ingrediente</option>';
 
     ingredientes.forEach(function (ingrediente) {
-        const opcion = document.createElement('option');
+        const opcion = document.createElement("option");
 
         opcion.value = ingrediente.id_ingrediente;
         opcion.textContent = ingrediente.nombre;
@@ -45,45 +45,47 @@ function rellenarSelectIngredientes(ingredientes) {
     });
 }
 
-// Función que prepara el formulario de la calculadora
 function prepararFormularioCalculadora() {
-    const formulario = document.getElementById('form-calculadora');
+    const formulario = document.getElementById("form-calculadora");
 
     if (!formulario) {
         return;
     }
 
-    formulario.addEventListener('submit', function (evento) {
+    formulario.addEventListener("submit", function (evento) {
         evento.preventDefault();
 
         agregarIngrediente();
     });
 }
 
-// Función que añade un ingrediente a la lista
 function agregarIngrediente() {
-    const select = document.getElementById('ingrediente');
-    const inputCantidad = document.getElementById('cantidad');
+    const select = document.getElementById("ingrediente");
+    const inputCantidad = document.getElementById("cantidad");
+
+    if (!select || !inputCantidad) {
+        return;
+    }
 
     const idIngrediente = select.value;
     const cantidad = parseFloat(inputCantidad.value);
 
     if (!idIngrediente) {
-        mostrarMensajeCalculadora('Debes seleccionar un ingrediente.', true);
+        mostrarMensajeCalculadora("Debes seleccionar un ingrediente.", true);
         return;
     }
 
     if (isNaN(cantidad) || cantidad <= 0) {
-        mostrarMensajeCalculadora('Debes introducir una cantidad válida en gramos.', true);
+        mostrarMensajeCalculadora("Debes introducir una cantidad válida en gramos.", true);
         return;
     }
 
     const ingrediente = ingredientesDisponibles.find(function (item) {
-        return item.id_ingrediente == idIngrediente;
+        return String(item.id_ingrediente) === String(idIngrediente);
     });
 
     if (!ingrediente) {
-        mostrarMensajeCalculadora('No se ha encontrado el ingrediente seleccionado.', true);
+        mostrarMensajeCalculadora("No se ha encontrado el ingrediente seleccionado.", true);
         return;
     }
 
@@ -93,14 +95,12 @@ function agregarIngrediente() {
 
     pintarIngredientesSeleccionados();
     calcularTotales();
+    mostrarMensajeCalculadora("Ingrediente añadido correctamente.", false);
 
-    mostrarMensajeCalculadora('Ingrediente añadido correctamente.', false);
-
-    select.value = '';
-    inputCantidad.value = '';
+    select.value = "";
+    inputCantidad.value = "";
 }
 
-// Función que calcula los valores nutricionales según la cantidad introducida
 function calcularValoresIngrediente(ingrediente, cantidad) {
     return {
         id_ingrediente: ingrediente.id_ingrediente,
@@ -113,9 +113,8 @@ function calcularValoresIngrediente(ingrediente, cantidad) {
     };
 }
 
-// Función que pinta la lista de ingredientes añadidos
 function pintarIngredientesSeleccionados() {
-    const contenedor = document.getElementById('lista-ingredientes');
+    const contenedor = document.getElementById("lista-ingredientes");
 
     if (!contenedor) {
         return;
@@ -125,8 +124,7 @@ function pintarIngredientesSeleccionados() {
         contenedor.innerHTML = `
             <div class="alert alert-info">
                 Todavía no has añadido ingredientes.
-            </div>
-        `;
+            </div>`;
         return;
     }
 
@@ -136,7 +134,7 @@ function pintarIngredientesSeleccionados() {
         html += `
             <li class="list-group-item d-flex justify-content-between align-items-start gap-3">
                 <div>
-                    <strong>${ingrediente.nombre}</strong><br>
+                    <strong>${escaparHTML(ingrediente.nombre)}</strong><br>
                     ${ingrediente.cantidad} g -
                     ${ingrediente.calorias.toFixed(1)} kcal
                     <br>
@@ -147,19 +145,33 @@ function pintarIngredientesSeleccionados() {
                     </small>
                 </div>
 
-                <button class="btn btn-sm btn-outline-danger" onclick="eliminarIngrediente(${indice})">
+                <button type="button" 
+                        class="btn btn-sm btn-outline-danger btn-eliminar-ingrediente-calculadora"
+                        data-indice="${indice}">
                     Eliminar
                 </button>
-            </li>
-        `;
+            </li>`;
     });
 
-    html += '</ul>';
+    html += "</ul>";
 
     contenedor.innerHTML = html;
+
+    prepararBotonesEliminarIngredienteCalculadora();
 }
 
-// Función para eliminar un ingrediente de la lista
+function prepararBotonesEliminarIngredienteCalculadora() {
+    const botones = document.querySelectorAll(".btn-eliminar-ingrediente-calculadora");
+
+    botones.forEach(function (boton) {
+        boton.addEventListener("click", function () {
+            const indice = parseInt(boton.dataset.indice);
+
+            eliminarIngrediente(indice);
+        });
+    });
+}
+
 function eliminarIngrediente(indice) {
     ingredientesSeleccionados.splice(indice, 1);
 
@@ -167,9 +179,8 @@ function eliminarIngrediente(indice) {
     calcularTotales();
 }
 
-// Función que calcula y pinta los totales
 function calcularTotales() {
-    const contenedor = document.getElementById('totales-calculadora');
+    const contenedor = document.getElementById("totales-calculadora");
 
     if (!contenedor) {
         return;
@@ -197,27 +208,24 @@ function calcularTotales() {
                 <p><strong>Hidratos:</strong> ${totalHidratos.toFixed(1)} g</p>
                 <p class="mb-0"><strong>Grasas:</strong> ${totalGrasas.toFixed(1)} g</p>
             </div>
-        </div>
-    `;
+        </div>`;
 }
 
-// Función para mostrar mensajes
 function mostrarMensajeCalculadora(mensaje, esError) {
-    const contenedor = document.getElementById('mensaje-calculadora');
+    const contenedor = document.getElementById("mensaje-calculadora");
 
     if (!contenedor) {
         return;
     }
 
-    let clase = 'alert-success';
+    let clase = "alert-success";
 
     if (esError) {
-        clase = 'alert-danger';
+        clase = "alert-danger";
     }
 
     contenedor.innerHTML = `
         <div class="alert ${clase}">
-            ${mensaje}
-        </div>
-    `;
+            ${escaparHTML(mensaje)}
+        </div>`;
 }

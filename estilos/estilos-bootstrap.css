@@ -28,7 +28,6 @@ body {
   color: #E9ECEF;
 }
 
-/* HEADER */
 .header-nutrifit {
   background: #1F3C88;
   color: #FFFFFF;
@@ -56,7 +55,6 @@ body {
   color: #FF932B;
 }
 
-/* NAV */
 .nav-nutrifit {
   background: #385299;
   width: min(80%, 1200px);
@@ -84,7 +82,6 @@ body {
   border-radius: 0.75rem;
 }
 
-
 .nav-nutrifit .dropdown-item {
   color: #FFFFFF;
 }
@@ -97,8 +94,8 @@ body {
 
 .buscador-bootstrap input {
   border: none;
-  
 }
+
 .buscador-bootstrap label {
   background-color: #F76807;
 }
@@ -117,7 +114,7 @@ body {
 .btn-outline-primary-custom {
   display: inline-block;
   font-weight: 600;
-  color: 0264F7;
+  color: #0D6EFD;
   border: 2px solid #0D6EFD;
   border-radius: 0.5rem;
   padding: 0.5rem 0.9rem;
@@ -131,16 +128,10 @@ body {
   border-color: #FD7E14;
 }
 
-/* SECCIONES */
 .seccion-destacada {
   background: #1F3C88;
 }
 
-.imagen-trabajando {
-  max-width: 400px;
-}
-
-/* CARDS */
 .tarjeta-plan {
   border-radius: 0.75rem;
   overflow: hidden;
@@ -190,15 +181,6 @@ textarea.form-control:focus {
   color: #212529;
 }
 
-.enlace-login {
-  color: #1F3C88;
-  text-decoration: none;
-  font-weight: 600;
-}
-
-.enlace-login:hover {
-  color: #F76807;
-}
 
 .imagen-receta-bootstrap {
   object-fit: cover;
@@ -259,8 +241,6 @@ textarea.form-control:focus {
   border-color: transparent;
 }
 
-
-/* FOOTER */
 .footer-nutrifit {
   background-color: #071C54;
   border-radius: 1rem 1rem 0 0;
@@ -275,9 +255,7 @@ textarea.form-control:focus {
   color: #FFFFFF;
 }
 
-
 @media (max-width: 992px) {
-
   .titulo-principal {
     font-size: 2.4rem;
   }
@@ -298,11 +276,9 @@ textarea.form-control:focus {
     width: 100%;
     margin-top: 1rem;
   }
-
 }
 
 @media (max-width: 768px) {
-
   .titulo-principal {
     font-size: 2rem;
   }
@@ -314,5 +290,4 @@ textarea.form-control:focus {
   .carousel-item img {
     height: 280px;
   }
-
 }

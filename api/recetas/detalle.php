@@ -1,13 +1,9 @@
 <?php
-
-// Indicamos que este archivo devuelve JSON
 header('Content-Type: application/json; charset=utf-8');
 
-// Importamos la clase Receta
 require_once __DIR__ . '/../../clases/Receta.php';
 
 try {
-    // Comprobamos si nos han pasado el id por la URL
     if (!isset($_GET['id'])) {
         echo json_encode([
             'error' => true,
@@ -17,16 +13,21 @@ try {
         exit;
     }
 
-    // Guardamos el id recibido por GET
     $id_receta = $_GET['id'];
 
-    // Creamos el objeto Receta
+    if (!is_numeric($id_receta)) {
+        echo json_encode([
+            'error' => true,
+            'mensaje' => 'El id de la receta no es válido.'
+        ], JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT);
+
+        exit;
+    }
+
     $recetaObj = new Receta();
 
-    // Buscamos la receta por id
     $receta = $recetaObj->obtenerPorId($id_receta);
 
-    // Si no existe la receta, devolvemos error
     if (!$receta) {
         echo json_encode([
             'error' => true,
@@ -36,18 +37,14 @@ try {
         exit;
     }
 
-    // Obtenemos los ingredientes de esa receta
     $ingredientes = $recetaObj->obtenerIngredientes($id_receta);
 
-    // Añadimos los ingredientes dentro del array de la receta
     $receta['ingredientes'] = $ingredientes;
 
-    // Devolvemos la receta completa en JSON
     echo json_encode($receta, JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT);
 } catch (Exception $ex) {
-    // Si algo falla, devolvemos el error en JSON
     echo json_encode([
         'error' => true,
-        'mensaje' => $ex->getMessage()
+        'mensaje' => 'Ha ocurrido un error al cargar el detalle de la receta.'
     ], JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT);
 }

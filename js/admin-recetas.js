@@ -1,4 +1,3 @@
-// Prepara los eventos del formulario de receta
 function prepararEventosFormularioReceta() {
     const botonMostrar = document.getElementById('btn-mostrar-form-receta');
     const botonCancelar = document.getElementById('btn-cancelar-receta');
@@ -28,7 +27,6 @@ function prepararEventosFormularioReceta() {
     }
 }
 
-// Cambia el formulario a modo crear receta
 function prepararModoCrearReceta() {
     const formulario = document.getElementById('form-crear-receta');
     const tituloFormulario = document.getElementById('titulo-form-receta');
@@ -49,11 +47,9 @@ function prepararModoCrearReceta() {
     limpiarMensajeAdmin();
 }
 
-// Envía los datos del formulario al endpoint correspondiente: crear o editar receta
 function guardarRecetaAdmin(formulario) {
     const datos = new FormData(formulario);
 
-    // Si hay id_receta, estamos editando. Si no hay id_receta, estamos creando.
     const idReceta = datos.get('id_receta');
 
     let url = API.recetas.crear;
@@ -87,7 +83,6 @@ function guardarRecetaAdmin(formulario) {
 
             prepararModoCrearReceta();
 
-            // Recargamos la tabla para ver la receta creada o editada
             cargarRecetasAdmin();
         })
         .catch(function (error) {
@@ -96,7 +91,6 @@ function guardarRecetaAdmin(formulario) {
         });
 }
 
-// Carga todas las recetas para mostrarlas en el panel
 function cargarRecetasAdmin() {
     fetch(API.recetas.listar)
         .then(function (respuesta) {
@@ -120,7 +114,6 @@ function cargarRecetasAdmin() {
         });
 }
 
-// Pinta las recetas en una tabla
 function pintarRecetasAdmin(recetas) {
     const contenedor = document.getElementById('contenedor-recetas-admin');
 
@@ -202,7 +195,6 @@ function pintarRecetasAdmin(recetas) {
     prepararBotonesEliminarReceta();
 }
 
-// Prepara los botones de editar receta
 function prepararBotonesEditarReceta(recetas) {
     const botonesEditar = document.querySelectorAll('.btn-editar-receta');
 
@@ -222,7 +214,6 @@ function prepararBotonesEditarReceta(recetas) {
     });
 }
 
-// Rellena el formulario con los datos de la receta seleccionada
 function rellenarFormularioEditarReceta(receta) {
     const formularioContenedor = document.getElementById('formulario-receta-admin');
     const tituloFormulario = document.getElementById('titulo-form-receta');
@@ -250,7 +241,6 @@ function rellenarFormularioEditarReceta(receta) {
     });
 }
 
-// Prepara los botones de eliminar receta
 function prepararBotonesEliminarReceta() {
     const botonesEliminar = document.querySelectorAll('.btn-eliminar-receta');
 
@@ -264,7 +254,6 @@ function prepararBotonesEliminarReceta() {
     });
 }
 
-// Pide confirmación antes de eliminar una receta
 function confirmarEliminarReceta(idReceta, nombreReceta) {
     const confirmar = confirm(
         '¿Seguro que quieres eliminar la receta "' + nombreReceta + '"?\n\n' +
@@ -278,7 +267,6 @@ function confirmarEliminarReceta(idReceta, nombreReceta) {
     eliminarRecetaAdmin(idReceta);
 }
 
-// Envía la petición al endpoint de eliminar receta
 function eliminarRecetaAdmin(idReceta) {
     const datos = new FormData();
     datos.append('id_receta', idReceta);
@@ -298,7 +286,6 @@ function eliminarRecetaAdmin(idReceta) {
 
             mostrarMensajeAdmin(resultado.mensaje, false);
 
-            // Si había un formulario abierto, lo cerramos y lo limpiamos
             const formularioContenedor = document.getElementById('formulario-receta-admin');
 
             if (formularioContenedor) {
@@ -308,7 +295,6 @@ function eliminarRecetaAdmin(idReceta) {
             prepararModoCrearReceta();
             cerrarGestionIngredientes();
 
-            // Recargamos la tabla para que desaparezca la receta eliminada
             cargarRecetasAdmin();
         })
         .catch(function (error) {

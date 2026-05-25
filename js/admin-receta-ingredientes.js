@@ -1,4 +1,3 @@
-// Prepara los botones de gestión de ingredientes
 function prepararBotonesIngredientesReceta(recetas) {
     const botonesIngredientes = document.querySelectorAll('.btn-ingredientes-receta');
 
@@ -24,7 +23,6 @@ function prepararBotonesIngredientesReceta(recetas) {
     });
 }
 
-// Muestra la zona de gestión de ingredientes de una receta concreta
 function mostrarGestionIngredientesReceta(receta) {
     const contenedor = document.getElementById('gestion-ingredientes-admin');
 
@@ -104,7 +102,6 @@ function mostrarGestionIngredientesReceta(receta) {
     });
 }
 
-// Prepara eventos del formulario de ingredientes
 function prepararEventosGestionIngredientes() {
     const botonCerrar = document.getElementById('btn-cerrar-ingredientes');
     const formulario = document.getElementById('form-asociar-ingrediente');
@@ -124,7 +121,6 @@ function prepararEventosGestionIngredientes() {
     }
 }
 
-// Carga todos los ingredientes existentes en el selector
 function cargarSelectorIngredientes() {
     const selector = document.getElementById('select-ingrediente');
 
@@ -165,7 +161,6 @@ function cargarSelectorIngredientes() {
         });
 }
 
-// Carga los ingredientes asociados a una receta
 function cargarIngredientesRecetaAdmin(idReceta) {
     const contenedor = document.getElementById('lista-ingredientes-receta');
 
@@ -193,7 +188,6 @@ function cargarIngredientesRecetaAdmin(idReceta) {
         });
 }
 
-// Pinta los ingredientes asociados a una receta
 function pintarIngredientesRecetaAdmin(idReceta, ingredientes) {
     const contenedor = document.getElementById('lista-ingredientes-receta');
 
@@ -267,7 +261,6 @@ function pintarIngredientesRecetaAdmin(idReceta, ingredientes) {
     prepararBotonesEliminarIngredienteReceta();
 }
 
-// Envía el formulario para asociar un ingrediente a una receta
 function asociarIngredienteRecetaAdmin(formulario) {
     const datos = new FormData(formulario);
     const idReceta = datos.get('id_receta');
@@ -297,7 +290,6 @@ function asociarIngredienteRecetaAdmin(formulario) {
         });
 }
 
-// Prepara botones para quitar ingredientes asociados a una receta
 function prepararBotonesEliminarIngredienteReceta() {
     const botones = document.querySelectorAll('.btn-eliminar-ingrediente-receta');
 
@@ -311,7 +303,6 @@ function prepararBotonesEliminarIngredienteReceta() {
     });
 }
 
-// Elimina una asociación entre receta e ingrediente
 function eliminarIngredienteRecetaAdmin(idReceta, idIngrediente) {
     const confirmar = confirm('¿Seguro que quieres quitar este ingrediente de la receta?');
 

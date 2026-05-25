@@ -1,31 +1,26 @@
-// Cuando el documento esté cargado, cargamos el detalle del plan
-document.addEventListener('DOMContentLoaded', function () {
+document.addEventListener("DOMContentLoaded", function () {
     cargarDetallePlan();
 });
 
-// Función principal para cargar el detalle de un plan
 function cargarDetallePlan() {
-    const contenedor = document.getElementById('detalle-plan');
+    const contenedor = document.getElementById("detalle-plan");
 
     if (!contenedor) {
         return;
     }
 
-    // Leemos el id que viene en la URL
-    // Ejemplo: DetallePlan.html?id=1
     const parametros = new URLSearchParams(window.location.search);
-    const id = parametros.get('id');
+    const id = parametros.get("id");
 
     if (!id) {
         contenedor.innerHTML = `
             <div class="alert alert-warning">
                 No se ha indicado ningún plan.
-            </div>
-        `;
+            </div>`;
         return;
     }
 
-    const url = API.planes.detalle + '?id=' + encodeURIComponent(id);
+    const url = API.planes.detalle + "?id=" + encodeURIComponent(id);
 
     fetch(url)
         .then(function (respuesta) {
@@ -35,19 +30,17 @@ function cargarDetallePlan() {
             pintarDetallePlan(plan);
         })
         .catch(function (error) {
-            console.error('Error al cargar el detalle del plan:', error);
+            console.error("Error al cargar el detalle del plan:", error);
 
             contenedor.innerHTML = `
                 <div class="alert alert-danger">
                     Ha ocurrido un error al cargar el plan.
-                </div>
-            `;
+                </div>`;
         });
 }
 
-// Función que pinta el detalle del plan
 function pintarDetallePlan(plan) {
-    const contenedor = document.getElementById('detalle-plan');
+    const contenedor = document.getElementById("detalle-plan");
 
     if (!contenedor) {
         return;
@@ -57,17 +50,16 @@ function pintarDetallePlan(plan) {
         contenedor.innerHTML = `
             <div class="alert alert-warning">
                 ${escaparHTML(plan.mensaje)}
-            </div>
-        `;
+            </div>`;
         return;
     }
 
-    document.title = escaparHTML(plan.nombre) + ' | NutriFit Pro';
+    document.title = plan.nombre + " | NutriFit Pro";
 
-    let textoPremium = 'Gratuito';
+    let textoPremium = "Gratuito";
 
     if (parseInt(plan.es_premium) === 1) {
-        textoPremium = 'Premium';
+        textoPremium = "Premium";
     }
 
     const recetasPorDia = agruparRecetasPorDia(plan.recetas);
@@ -122,11 +114,9 @@ function pintarDetallePlan(plan) {
 
         <a href="${BASE_URL}paginas/Planes.html" class="btn btn-naranja">
             Volver a planes
-        </a>
-    `;
+        </a>`;
 }
 
-// Agrupa las recetas por día para poder pintar una tarjeta por cada día
 function agruparRecetasPorDia(recetas) {
     const recetasPorDia = {};
 
@@ -143,19 +133,18 @@ function agruparRecetasPorDia(recetas) {
     return recetasPorDia;
 }
 
-// Pinta las tarjetas de cada día siguiendo el orden semanal
 function pintarTarjetasDias(recetasPorDia) {
     const ordenDias = [
-        'lunes',
-        'martes',
-        'miércoles',
-        'jueves',
-        'viernes',
-        'sábado',
-        'domingo'
+        "lunes",
+        "martes",
+        "miércoles",
+        "jueves",
+        "viernes",
+        "sábado",
+        "domingo",
     ];
 
-    let tarjetas = '';
+    let tarjetas = "";
 
     ordenDias.forEach(function (dia) {
         const recetasDia = recetasPorDia[dia] || [];
@@ -171,28 +160,25 @@ function pintarTarjetasDias(recetasPorDia) {
                         ${pintarComidasDia(recetasDia)}
                     </div>
                 </article>
-            </div>
-        `;
+            </div>`;
     });
 
     return tarjetas;
 }
 
-// Pinta las comidas de un día concreto
 function pintarComidasDia(recetasDia) {
     const ordenComidas = [
-        'desayuno',
-        'comida',
-        'merienda',
-        'cena'
+        "desayuno",
+        "comida",
+        "merienda",
+        "cena",
     ];
 
     if (recetasDia.length === 0) {
         return `
             <div class="alert alert-light border mb-0">
                 No hay recetas asignadas para este día.
-            </div>
-        `;
+            </div>`;
     }
 
     let htmlComidas = '<div class="d-flex flex-column gap-3">';
@@ -221,34 +207,31 @@ function pintarComidasDia(recetasDia) {
                         </div>
 
                         <div>
-                            <a href="${BASE_URL}paginas/DetalleReceta.html?id=${encodeURIComponent(recetaComida.id_receta)}" 
+                            <a href="${BASE_URL}paginas/DetalleReceta.html?id=${encodeURIComponent(recetaComida.id_receta)}"
                                class="btn btn-sm btn-naranja">
                                 Ver receta
                             </a>
                         </div>
                     </div>
-                </div>
-            `;
+                </div>`;
         } else {
             htmlComidas += `
                 <div class="border rounded-4 p-3 bg-light">
                     <p class="mb-0 texto-secundario">
                         <strong>${escaparHTML(capitalizarPrimeraLetra(comida))}:</strong> sin receta asignada.
                     </p>
-                </div>
-            `;
+                </div>`;
         }
     });
 
-    htmlComidas += '</div>';
+    htmlComidas += "</div>";
 
     return htmlComidas;
 }
 
-// Convierte la primera letra en mayúscula
 function capitalizarPrimeraLetra(texto) {
     if (!texto) {
-        return '';
+        return "";
     }
 
     return texto.charAt(0).toUpperCase() + texto.slice(1);
